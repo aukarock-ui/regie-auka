@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "ask": [
+      "mcp__studiolive__apply_settings_plan",
+      "mcp__studiolive__apply_preset_plan",
+      "mcp__studiolive__apply_change_set",
+      "mcp__studiolive__recall_console_preset"
+    ]
+  }
+}
