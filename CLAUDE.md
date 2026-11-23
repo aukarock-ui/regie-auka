@@ -21,11 +21,40 @@ Un rendu professionnel et musical de haut niveau, pas seulement un rendu sans er
 Ce dossier (`%USERPROFILE%\Regie-Auka`) est une copie locale du dossier Google Drive `Regie-Auka`, installée et mise à jour par le skill `demarrer-regie-auka`. La méthode avance dans le projet claude.ai « Mix Live », qui publie chaque nouvelle version dans le Drive.
 
 - Au début de chaque session, compare `VERSION.md` local à celui du Drive (connecteur Google Drive). S'ils diffèrent, propose à Louis la mise à jour (skill `demarrer-regie-auka`, mode mise à jour), puis annonce la version du guide en service.
-- **Ne modifie pas le guide ni le contexte ici.** Une constatation faite en régie s'écrit dans `retours/AAAA-MM-JJ_lieu.md` **et** se dépose dans le sous-dossier `retours` du Drive avec le connecteur, pour être intégrée au guide depuis le projet.
+- Une constatation faite en régie s'écrit dans `retours/AAAA-MM-JJ_lieu.md` **et** se dépose dans le sous-dossier `retours` du Drive.
+- Une amélioration que tu trouves (guide, contexte, ce fichier, code, skills) peut être publiée dans le Drive par toi-même, selon « Faire évoluer le Drive » ci-dessous.
+
+## Faire évoluer le Drive
+
+Tu peux améliorer les fichiers de la régie quand tu trouves mieux. Trois conditions : Louis valide, la règle zéro approximation s'applique comme partout, et tout est tracé.
+
+1. **Proposer d'abord.** Dire quoi, pourquoi, sur quelle source (page de manuel, mesure, retour validé à l'écoute), avec l'avant → après exact. Rien n'est publié sans un OK explicite de Louis pour ce changement précis. Une inférence non validée n'entre jamais dans le guide.
+2. **Faire la modification selon le fichier :**
+   - **Guide** : suivre le skill `maj-guide-mixage` (vérification au manuel, script de remplacements, propagation partout où l'ancienne valeur apparaît, changelog avant/après). Le résultat est une nouvelle version numérotée (V35 → V36), jamais une réécriture en place, et une seule version dans `guide/`.
+   - **Contexte, `CLAUDE.md`, `LISEZMOI.md`** : modification ciblée, le reste préservé mot pour mot.
+   - **Code** (`code/studiolive-mix-assistant`) : si le dossier n'est pas un dépôt git, en créer un avant de toucher quoi que ce soit (`git init`, `git add -A`, `git commit -m base`). Modifier, puis `npx -y pnpm@9 build` et `npx -y pnpm@9 test` : tout doit passer. Les garde-fous (validation avant écriture, catégories sensibles, règles du plan de preset) ne s'affaiblissent jamais sans demande explicite de Louis.
+   - **Skills** : la référence est le compte claude.ai de Louis. Proposer la modification (carte de proposition si la session en offre l'outil, sinon le texte exact dans le journal), puis, une fois validée, republier `skills.zip`.
+3. **Publier avec le connecteur Google Drive.** Créer le nouveau fichier dans le bon dossier (`create_file`, type `text/markdown` ou `application/zip`, conversion Google désactivée), puis mettre l'ancien à la corbeille (`trash_file`). Le connecteur ne remplace pas le contenu d'un fichier, et deux fichiers du même nom ne doivent jamais coexister.
+   - Archive du code : `tar -a -cf studiolive-mix-assistant.zip --exclude=node_modules --exclude=dist --exclude=.git -C code\studiolive-mix-assistant .`
+   - Si le connecteur refuse un fichier trop lourd (au-delà d'environ 3 Mo encodés), ne pas insister : déposer la modification du code sous forme de patch texte (`git diff`) dans `code`, nommé `AAAA-MM-JJ_sujet.patch`, et le signaler à Louis. Le projet « Mix Live » l'appliquera.
+4. **Tracer.** Ajouter une entrée **en tête** de `JOURNAL.md` (racine du Drive) : date, fichier, résumé avant → après, source, « validé par Louis ». Mettre à jour `VERSION.md`. Mettre aussi à jour la copie locale.
+5. Le projet claude.ai « Mix Live » relit `JOURNAL.md` et récupère les nouvelles versions : ce qui est publié ici n'est pas perdu côté projet.
+
+Dossiers du Drive (identifiants pour le connecteur) :
+
+| Dossier | Identifiant |
+|---|---|
+| racine `Regie-Auka` | `1NhEZ8haRy-l8kzS-ICPvLANI-ZNXozv0` |
+| `guide` | `1Q-i3RR9fDn_nDgTjihXU5S3O2n4w_yJq` |
+| `contexte` | `1HUafK3itcu0vEkwOtKd0YXB9JzvI0Net` |
+| `manuels` | `1lj0hxRqZHXFpcu1-0vwFZdw9aF182ZVJ` |
+| `retours` | `1D6Farkern9JFyf25iUgvGf17o1W2h-XN` |
+| `code` | `1cI_MkJSsQuE8-8J6w3nvEKCLLbJPEfQ0` |
+| `skills` | `166LNDRhqY4LxQREMYky7DRCMFX7z2M0-` |
 
 ## Où sont les choses dans ce dossier
 
-- `guide/Guide_Mixage_Live_V35.md` : **la référence unique** (presets, bus, gain staging, scènes de style, correspondances multi-consoles, registre des vérifications 8.7). Le consulter, jamais le reconstituer de mémoire. La section `HISTORIQUE — NE PAS CITER` contient volontairement des valeurs périmées.
+- `guide/Guide_Mixage_Live_V36.md` : **la référence unique** (presets, bus, gain staging, scènes de style, correspondances multi-consoles, registre des vérifications 8.7). Le consulter, jamais le reconstituer de mémoire. La section `HISTORIQUE — NE PAS CITER` contient volontairement des valeurs périmées.
 - `contexte/` : faits utiles qui ne sont pas tous dans le guide (parc matériel, système de la grande scène, comportements console vérifiés). En cas de désaccord avec le guide, le guide prime et l'écart est signalé à Louis.
 - `manuels/` : documentation constructeur. Les `.txt` sont des extractions pour la recherche ; l'extraction casse les tableaux, donc pour un tableau décisif, ouvrir la page du PDF.
 - `skills/` : copie de secours des skills de la méthode.

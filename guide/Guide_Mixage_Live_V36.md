@@ -1,4 +1,4 @@
-**GUIDE DE MIXAGE LIVE — V35**
+**GUIDE DE MIXAGE LIVE — V36**
 
 ÉDITION AUTONOMIE — PreSonus StudioLive 32SC + 16R
 
@@ -387,7 +387,7 @@ Rien de ce qui suit n’est garanti : à confirmer date par date, et à ne jamai
 
 ## 0.7 Mon autonomie réelle
 
-Avec les 8 micros personnels et les 4 canaux de DI, sans aucun emprunt :
+Avec les 9 micros personnels et les 4 canaux de DI, sans aucun emprunt de micro ni de DI (les pieds sont une autre affaire, voir 0.8) :
 
 *Batterie complète en 4 canaux* — kick (BD 500 Beta), caisse claire (i5), overheads stéréo (paire Lewitt). Les toms et les cymbales sont portés par les overheads. C’est une configuration professionnelle standard, pas un compromis.
 
@@ -418,6 +418,8 @@ Avec les 8 micros personnels et les 4 canaux de DI, sans aucun emprunt :
 *Cuivres et bois.* Le SM57 dépanne sur une trompette. Sur un sax ou une flûte, on reste en dépannage.
 
 *Authenticité des Beta58.* Deux des quatre micros voix sont incertains. Test à faire (Annexe C).
+
+*Pieds de micro.* Le parc n’en a qu’un (0.4), et la batterie le prend. La guitare et chaque voix demandent un pied de plus, fourni par le lieu ou la MJC (0.6 : cinq grands pieds et un petit). L’autonomie de 0.7 vaut pour les micros et les DI, pas pour les pieds : sur une configuration rock à quatre voix, il en faut cinq de plus.
 
 ## 0.9 Feuille de route
 
@@ -777,7 +779,7 @@ Ne pas confondre les deux commandes voisines. Le **Key Filter** dit *à quelle f
 
 ## 2.6 Errata de la documentation PreSonus
 
-Trois erreurs, une lacune et une divergence de nommage constatées dans la documentation officielle. Elles sont consignées ici pour éviter qu’une relecture future du manuel ne les réintroduise dans le guide.
+Quatre erreurs, une lacune, une divergence de nommage et une contradiction interne constatées dans la documentation officielle. Elles sont consignées ici pour éviter qu’une relecture future du manuel ne les réintroduise dans le guide.
 
 **Baxandall EQ, High Cut.** L’addendum recopie la description du Low Cut (« 54 à 12 Hz »), impossible pour un coupe-haut. Lecture du panneau : zone libellée en kHz, environ 7,5 à 70 kHz. Contrôle laissé OFF dans tout le guide.
 
@@ -790,6 +792,8 @@ Trois erreurs, une lacune et une divergence de nommage constatées dans la docum
 **Gate sur les bus — le manuel se contredit.** Le tableau 6.1 ne donne de gate qu’aux canaux d’entrée ; la section 5.3.2 dit que les sous-groupes, fixes comme FlexMix, reçoivent « les noise gate, limiteur, compresseur et égaliseur du Fat Channel ». Sans conséquence pour ce guide, qui ne pose aucun gate sur un bus.
 
 **Tube CB, numérotation des commandes.** Le texte de l’addendum (3.7, point 7) renvoie aux commandes « Attack (#2) and Release (#4) » ; sur l’illustration et dans la liste elle-même, Attack porte le n° 3 et Release le n° 5 (le n° 2 est Gain, le n° 4 Threshold). Sans conséquence sur le réglage, mais à savoir avant de suivre l’addendum au numéro.
+
+**Vintage 1970s EQ, libellé du point 6.** Le manuel français (6.6.3) décrit le point 6 comme « L-Mid Freq » alors qu’il règle la fréquence centrale des **hauts médiums** : c’est le H-Mid Freq de l’illustration (4.8 kHz par défaut). Sans conséquence sur le réglage.
 
 ## 2.7 Plages de réglage chiffrées
 
@@ -870,9 +874,11 @@ Le guide décrit depuis longtemps des *procédures* de phase correctes (touche �
 | **Couplage** | Phase dans ±120° (±⅓ de longueur d’onde) | Addition seule, 0 à +6 dB |
 | **Combing** | Au-delà de ±120° **et moins de 4 dB d’écart de niveau** | Zone à fuir : pertes potentiellement totales |
 | **Combining** | **4 à 10 dB d’écart de niveau** | Interaction bornée, ondulation limitée à ±6 dB |
-| **Isolation** | **10 dB ou plus d’écart de niveau** | Interaction négligeable |
+| **Isolation** | **10 dB ou plus d’écart de niveau** | Interaction faible mais pas nulle : moins de 6 dB entre crête et creux |
 
-**⚠️ Ce qu’il faut en retenir avant tout : l’écart de niveau est lui-même un outil de phase.** Deux micros sur la même source à moins de 4 dB l’un de l’autre dans le mix sont en zone de combing — il *faut* traiter (polarité, retard, placement). À 10 dB d’écart, l’interaction ne mérite plus qu’on s’en occupe. C’est ce qui transforme « vérifier la phase » en geste ciblé plutôt qu’en rituel : **la question n’est pas seulement *sont-ils en phase*, c’est *à quel écart de niveau sont-ils*.**
+**⚠️ Ce qu’il faut en retenir avant tout : l’écart de niveau est lui-même un outil de phase.** Deux micros sur la même source à moins de 4 dB l’un de l’autre dans le mix sont en zone de combing — il *faut* traiter (polarité, retard, placement). À 10 dB d’écart, l’interaction devient secondaire sans disparaître : on la traite si le timbre l’exige, plus par principe. C’est ce qui transforme « vérifier la phase » en geste ciblé plutôt qu’en rituel : **la question n’est pas seulement *sont-ils en phase*, c’est *à quel écart de niveau sont-ils*.**
+
+*Le calcul derrière les seuils.* Deux signaux corrélés d’écart de niveau Δ dB : le plus faible vaut r = 10^(−Δ/20) du plus fort. La somme oscille entre 20 log(1 + r) en phase et 20 log(1 − r) en opposition. À **4 dB** (r = 0,63) : +4,3 dB et −8,7 dB, soit 12,9 dB de crête à creux, environ **±6,5 dB** autour du milieu — c’est le sens de « ±6 dB » dans le tableau. À **10 dB** (r = 0,32) : +2,4 dB et −3,3 dB, soit **5,7 dB** de crête à creux. *Correction V36 : l’ancien texte disait « interaction négligeable » à 10 dB.* Boyce donne le même ordre de grandeur sans le transformer en absolu : à partir de **9 dB** d’écart, l’effet de peigne est « minimisé », et la règle du 3:1 (qui donne environ 10 dB) le réduit sans l’éliminer (*Introduction to Live Sound Reinforcement*, 2014, §12.4, p. 253–254). L’édition et les pages de McCarthy restent à relever.
 
 **Le critère du ⅓ de longueur d’onde — ce qui tranche XY contre ORTF.** Le couplage exige une différence de trajet inférieure à ⅓ de longueur d’onde. En **XY coïncident**, cette différence est proche de zéro : couplage sur tout le spectre. C’est la raison physique de la compatibilité mono, pas une affirmation de principe. En **ORTF à 17 cm**, pour une source franchement latérale, la différence de trajet atteint 17 cm — soit ⅓ de longueur d’onde autour de **670 Hz** : au-dessus, on sort du couplage. Et ça explique enfin pourquoi le guide demande de mesurer à la ficelle pour centrer la caisse claire : distance égale = différence de trajet nulle = couplage à toutes les fréquences **pour cette source-là**.
 
@@ -932,7 +938,7 @@ Poser le kick en premier (il faut accéder à l’intérieur de la caisse avant 
 
 *Bus.* Bus Drums (FM 9+10) + Bus Parallel (FM 15).
 
-*Si ça distord.* À gain modéré, une distorsion vient du micro lui-même (140 dB SPL maximum à 1 % de THD), pas du préampli. Reculer le micro dans la caisse plutôt que baisser le gain.
+*Si ça distord.* À gain modéré, suspecter d’abord le micro lui-même (140 dB SPL maximum à 1 % de THD) plutôt que le préampli. Reculer le micro dans la caisse plutôt que baisser le gain ; si la distorsion reste, changer de câble puis de micro pour situer la cause.
 
 **CAISSE CLAIRE — Audix i5 sur D-Vice**
 
@@ -1670,7 +1676,7 @@ Quatre processeurs d’effets stéréo, chacun avec son propre bus auxiliaire. N
 
 *Type.* Stereo Delay.
 
-*Réglages.* Delay Time A/B calés au tempo **à la touche TAP** : le résultat est toujours plus juste qu’une valeur en millisecondes calculée à l’avance. À défaut de TAP, 375/500 ms pour un feel ternaire (hip-hop, reggae), 250/500 ms pour un feel binaire (punk, rock). Feedback A/B **40 %. LP Filter 6 kHz** et **HP Filter 200 Hz** réglés dans l’effet lui-même. **Fb LPF 5 kHz** pour que les répétitions s’assombrissent en s’éloignant. Spread modéré.
+*Réglages.* Delay Time A/B calés au tempo **à la touche TAP** : le résultat est toujours plus juste qu’une valeur en millisecondes calculée à l’avance. À défaut de TAP, calculer au tempo du morceau : noire = 60 000 / BPM, croche = la moitié, croche pointée = les trois quarts. Les valeurs souvent citées, **250/500 ms** (croche et noire, punk, rock) et **375/500 ms** (croche pointée et noire, hip-hop, reggae), ne valent qu’**à 120 BPM** : un punk à 180 BPM met la noire à 333 ms. *Correction V36 : l’ancien texte parlait de « feel ternaire » pour 375 ms, qui est une croche pointée, pas un triolet.* Feedback A/B **40 %. LP Filter 6 kHz** et **HP Filter 200 Hz** réglés dans l’effet lui-même. **Fb LPF 5 kHz** pour que les répétitions s’assombrissent en s’éloignant. Spread modéré.
 
 *EQ du retour.* Le filtrage étant fait dans l’effet, le retour peut rester quasi flat : un cut -3 dB à 6 kHz, Q 2.0, si ça siffle encore.
 
@@ -1748,7 +1754,7 @@ Les paramètres non mentionnés dans une scène restent ceux des Parties 3, 4 et
 
 *Master.* Limiteur -2 dBFS, RMS -10 à -8 dBFS.
 
-*FX.* Delay B en times binaires 250/500 ms (ou au TAP). **Reverb A courte : Reflection haut, Predelay court (20–30 ms), Low Pass 6 kHz.** En punk, moins de reverb vaut mieux : ça brouille l’énergie.
+*FX.* Delay B en croche et noire au tempo (TAP, ou calcul de 5.3 ; 250/500 ms à 120 BPM). **Reverb A courte : Reflection haut, Predelay court (20–30 ms), Low Pass 6 kHz.** En punk, moins de reverb vaut mieux : ça brouille l’énergie.
 
 *HPF voix.* 100 Hz.
 
@@ -1768,7 +1774,7 @@ Les paramètres non mentionnés dans une scène restent ceux des Parties 3, 4 et
 
 *Master.* Limiteur -2 dBFS, RMS -11 à -9 dBFS.
 
-*FX.* Delay B binaire 250/500 ms (ou au TAP). Reverb A : Reflection modéré, Predelay 40 ms.
+*FX.* Delay B en croche et noire au tempo (TAP, ou calcul de 5.3 ; 250/500 ms à 120 BPM). Reverb A : Reflection modéré, Predelay 40 ms.
 
 *HPF voix.* 100 Hz.
 
@@ -1810,7 +1816,7 @@ Les paramètres non mentionnés dans une scène restent ceux des Parties 3, 4 et
 
 *Master.* Limiteur -3 dBFS, RMS -12 à -10 dBFS. La dynamique compte plus que le volume.
 
-*FX.* Delay B en times ternaires 375/500 ms. Reverb A courte et détachée (Predelay, Reflection bas) — l’intelligibilité du texte prime sur tout. Le ducking de la reverb ne se fait pas sur le retour d’effet ; deux voies à vérifier en 5.2.
+*FX.* Delay B en croche pointée et noire au tempo (TAP, ou calcul de 5.3 ; 375/500 ms à 120 BPM). Reverb A courte et détachée (Predelay, Reflection bas) — l’intelligibilité du texte prime sur tout. Le ducking de la reverb ne se fait pas sur le retour d’effet ; deux voies à vérifier en 5.2.
 
 *HPF voix.* 80 Hz.
 
@@ -1836,7 +1842,7 @@ Les paramètres non mentionnés dans une scène restent ceux des Parties 3, 4 et
 
 *Master.* Limiteur -3 dBFS, RMS -13 à -11 dBFS.
 
-*FX.* Reverb A : Reflection bas (espace ample), Predelay 40 ms. Delay B ternaire 375/500 ms, Feedback un peu plus haut (45–50 %) sur les fins de phrase.
+*FX.* Reverb A : Reflection bas (espace ample), Predelay 40 ms. Delay B en croche pointée et noire au tempo (TAP, ou calcul de 5.3 ; 375/500 ms à 120 BPM), Feedback un peu plus haut (45–50 %) sur les fins de phrase.
 
 *HPF voix.* 80 Hz.
 
@@ -1924,7 +1930,7 @@ Le GEQ 31 bandes est assigné au Main L/R. Il corrige l’acoustique du lieu, il
 | Honk | Son de carton désagréable | Couper -2 à -3 dB entre 250 et 400 Hz |
 | Nasillard | Voix agressives | Couper -2 dB entre 800 Hz et 1,6 kHz |
 | Stridence | Aigus douloureux | Couper -2 à -3 dB entre 2 et 4 kHz |
-| Larsen | Fréquence qui monte | Couper -3 à -6 dB sur la fréquence identifiée |
+| Larsen | Fréquence qui monte | Couper environ -3 dB sur la seule bande identifiée (Shure, « How to Control Feedback in a Sound System », 2013 ; même geste qu’en 7.11) ; si l’accroche revient, agir sur le placement ou le niveau plutôt que creuser la bande |
 | Salle morte | Son étouffé, sans air | Boost léger +1 dB entre 8 et 12 kHz |
 
 Utiliser le RTA du 32SC pour visualiser les fréquences problématiques, activable depuis le GEQ.
@@ -2102,7 +2108,7 @@ C’est la voie la plus souple, et celle qui a été auditée le plus sérieusem
 
 Le mécanisme clé : chaque canal a un réglage **Départ numérique Pre/Post** par rapport à son propre Fat Channel — Pre prend le signal juste après le préampli (avant HPF/gate/comp/EQ), Post après tout le traitement. Et la **Source d’entrée** d’un canal (Analogique/USB/Réseau/Carte SD) est un sélecteur exclusif : jamais les deux en même temps sur le même canal.
 
-**⚠️ C’est ce verrou qui empêche mécaniquement un larsen numérique.** Si un même canal envoyait en USB et recevait le retour, la sortie alimenterait son entrée en boucle fermée — exactement le mécanisme d’un Larsen acoustique, avec du gain qui monte jusqu’à saturer. Le montage à deux canaux n’est donc pas une convention pratique, c’est ce qui rend la boucle structurellement impossible :
+**⚠️ C’est ce verrou qui empêche un larsen numérique d’un canal sur lui-même.** Si un même canal envoyait en USB et recevait le retour, la sortie alimenterait son entrée en boucle fermée — exactement le mécanisme d’un Larsen acoustique, avec du gain qui monte jusqu’à saturer. Le montage à deux canaux n’est donc pas une convention pratique, c’est ce qui rend impossible la boucle d’un canal sur lui-même. **Il ne protège pas d’une erreur de routage dans le logiciel hôte** (monitoring d’entrée actif, sortie renvoyée vers le canal USB d’un autre canal de la console) : premier essai à bas niveau, main sur le fader de B (registre 8.7) :
 
 - **Canal A — le départ.** Micro en entrée, **Source = Analogique en permanence**. Départ numérique = **Pre** : le plugin reçoit le signal **avant tout le Fat Channel de A** (manuel 6.8.2 : Pre, « le signal est envoyé avant traitement par le Fat Channel »). Le Fat Channel de A ne sert donc **qu’aux retours de scène** qui partent de ce canal (ci-dessous). **Fader verrouillé à Unity, jamais touché pendant le show.** **Désaffecté du Main et de tous les bus de groupe** — Bus Voix surtout, mais aussi Drums, Instru, Parallel, Divers et sous-groupes fixes (touche d’affectation du mixage principal et touches d’affectation des sous-groupes, mode Aux Sends du Fat Channel, manuel 6.7) —, **départs d’effets FX A à D fermés** (la reverb et le delay se prennent sur B, sinon l’effet reçoit la voix brute en plus de la voix traitée), départs Aux ouverts vers les retours seulement. C’est le point de vérification n°1 avant chaque set : le chanteur seul au micro, B coupé, deux contrôles. **(1) A n’atteint pas la façade :** ni le Main ni aucun **bus de groupe** (Drums, Instru, Voix, Parallel, Divers, sous-groupes fixes) ne doit bouger. **(2) A alimente bien le retour :** le mètre du FlexMix Aux du chanteur **doit** bouger, et le chanteur confirme qu’il s’entend — un départ Aux resté fermé passerait le premier contrôle sans que personne ne s’en aperçoive. Si A fuit quelque part en plus de B, on obtient une voix doublée avec un léger décalage, un comb filtering audible. **Enregistrer les scènes de style dans cet état** : une scène stockée avec A affecté le réaffecte au rappel. **Ne pas utiliser la touche Mute de A pour ça** : son effet sur les départs Aux dépend du mode **Link Aux Mutes** (manuel 12.1.5). En « Unlinked », réglage par défaut (tableau de réinitialisation, 9.6.6), couper A dans le Main laisse ses retours ; en « Main Mute Auxes » ou « Global Mute Link », le chanteur perd sa voix dans ses retours.
 
@@ -2573,9 +2579,9 @@ Canal : gain, low-cut, delay numérique, source assignable.
 
 **⚠️ La meilleure nouvelle de toute cette recherche : un vrai de-esser natif, sur chaque canal, gratuit.** Contrairement à tout ce qui a motivé la section 7.10 sur la StudioLive (montage à deux canaux, USB, ordinateur dédié, risque de latence), l’Ui24R intègre un de-esser directement dans le bloc EQ paramétrique de **chaque canal d’entrée, retour FX et master de sous-groupe** — pas un ajout payant, pas un insert à câbler. Commandes : **Threshold, Ratio, Frequency**, manipulables via une interface graphique tactile (une “boule” qu’on fait glisser — haut/bas = seuil, gauche/droite = fréquence, pincer = ratio). Si Louis pose un jour la main sur cette console, le problème entier de la Partie 7.10 disparaît : de-esser une voix lead devient un geste natif d’un seul canal, sans montage.
 
-**Gate et Compresseur restent deux blocs séparés** (contrairement au X-AIR) : Gate — Threshold, Attack, Hold, Depth, Release ; Compresseur — Threshold, Attack (en microsecondes), Ratio, Release, Gain, Hold, Soft/Hard Knee partagé entre les deux blocs.
+**Gate et Compresseur restent deux blocs séparés** (contrairement au X-AIR) : Gate — Threshold, Attack, Hold, Depth, Release ; Compresseur — Threshold, Attack (1 à 400 ms d’après les spécifications ; le texte de la section Compresseur parle de microsecondes — le manuel se contredit, lire l’unité à l’écran), Ratio, Release, Gain, Hold, Soft/Hard Knee partagé entre les deux blocs.
 
-**EQ à deux visages** : parametric 4 bandes + HPF sur les canaux, **GEQ 31 bandes sur les masters de sous-groupe et Aux**, avec RTA (analyseur temps réel) intégré à l’écran EQ pour viser une fréquence à l’oreille ET à l’œil.
+**EQ à deux visages** : paramétrique 4 bandes + HPF sur les canaux d’entrée, les retours FX et les masters de sous-groupe ; **GEQ 31 bandes sur les sorties (Master L/R et masters Aux)** — *correction V36 : l’ancien texte mettait le GEQ sur les masters de sous-groupe, que le manuel range du côté paramétrique*, avec RTA (analyseur temps réel) intégré à l’écran EQ pour viser une fréquence à l’oreille ET à l’œil.
 
 **dbx AFS2 (Automatic Feedback Suppression) intégré au GEQ des sorties.** Un algorithme dbx matériel, pas une simple app — pertinent en complément du principe NOM (2.2) pour la gestion du gain avant larsen sur un plateau à micros nombreux.
 
@@ -2587,7 +2593,7 @@ Canal : gain, low-cut, delay numérique, source assignable.
 
 Pistes argumentées, **aucune validée en conditions réelles**. À cocher au fur et à mesure.
 
-*État au 10 novembre 2026 :* **aucun test de ce registre n’a été réalisé depuis septembre** (confirmé par Louis). Le seul retour de terrain nouveau est celui de Tram Fest sur SQ6, consigné en 8.6 — il ne solde aucune ligne ci-dessous, toutes propres à la StudioLive ou à d’autres consoles.
+*État au 23 novembre 2026 :* **aucun test de ce registre n’a été réalisé depuis septembre** (confirmé par Louis le 10 novembre ; rien de nouveau au 23 novembre d’après le retour PC de régie). Le seul retour de terrain nouveau est celui de Tram Fest sur SQ6, consigné en 8.6 — il ne solde aucune ligne ci-dessous, toutes propres à la StudioLive ou à d’autres consoles.
 
 *La méthode pour avancer :* la balance virtuelle (7.12). Les lignes marquées **BV** se soldent console seule, sur un enregistrement, sans groupe.
 
@@ -2609,6 +2615,7 @@ Pistes argumentées, **aucune validée en conditions réelles**. À cocher au fu
 | Sous-groupe fixe vers une sortie Mix | 1.3 | Patch numérique, Analog Sends : le sous-groupe sort-il bien sur la sortie choisie ? |
 | GEQ sur chaque retour | 7.11 | Ring out à la main, 3–4 bandes au plus ; tenue des courbes au changement de scène |
 | AFS sur les retours | 7.11 | PA2 entre sorties de retours et ampli ; Fixed puis Live ; marge gagnée en dB |
+| Routage hôte de l’insert USB, sans boucle | 7.10 | Plugin bypassé, fader de B bas : monitoring d’entrée du logiciel coupé, sortie du plugin sur le seul canal USB de B ; monter B lentement, aucune montée ni écho |
 | Voix lead par USB, chaîne retenue | 7.10 | Clap-test de chaque plugin (Timeless 3 en priorité) ; tenue CPU sur la durée d’un set |
 | Effet de la table par USB | 7.10 | Départ FX D pré-processeur vers une reverb ou un delay VST ; le processeur interne tourne-t-il encore ? |
 | Identifier les modules utilisés sur SQ6 | 8.6 | Nom de l’égalisation dynamique et de l’émulation de préampli de Tram Fest |
@@ -2708,11 +2715,11 @@ Pistes argumentées, **aucune validée en conditions réelles**. À cocher au fu
 
 Chaque patch distingue le **parc personnel** (garanti) de l’**emprunt** (à confirmer date par date).
 
-**Groupe rock / punk — 4 musiciens, 100 % autonome**
+**Groupe rock / punk — 4 musiciens, micros et DI 100 % personnels**
 
 Canal 1 kick (BD 500 Beta, 48 V) · Canal 2 caisse claire (i5 sur D-Vice) · Canaux 3-4 overheads (Lewitt, 48 V, couplés en stéréo) · Canal 5 basse (DI active) · Canal 6 guitare (SM57) · Canaux 7-8 voix (Beta58 ×2) · Canaux 9-10 chœurs (SM58 ×2).
 
-*10 canaux, uniquement du matériel personnel, un seul pied de micro.* C’est la configuration de référence.
+*10 canaux, uniquement des micros et DI personnels, un seul pied pour toute la batterie.* La guitare et les quatre voix demandent cinq pieds de plus, à trouver sur place (0.8). C’est la configuration de référence.
 
 **Groupe métal — 5 musiciens, avec emprunt**
 
@@ -2791,6 +2798,23 @@ Ce qui reste en place, ce qui bouge, ce qui se démonte. Sur un plateau serré, 
 # HISTORIQUE — NE PAS CITER
 
 *Section de traçabilité. Les valeurs « avant » sont périmées et ne doivent jamais être reprises comme valeurs de travail : seul le corps du guide fait foi. Une recherche textuelle peut tomber ici avant d’atteindre la prescription courante : la protection est la consigne du bloc assistant, pas le texte.*
+
+﻿### CE QUI CHANGE PAR RAPPORT À LA V35
+
+Sources : audit externe du 23 novembre 2026 (relecture statique du dépôt GitHub, sans manuels), trié point par point dans `audits/2026-11-23-audit-externe-tri.md` ; relecture de Claude le même jour, à la place de l’audit Gemini (quota gratuit épuisé). Chaque point a été vérifié dans le guide, et au manuel quand il en invoque un.
+
+- **0.7.** « 8 micros personnels » → **9** (le décompte de 0.2 donne 1 + 1 + 2 + 1 + 2 + 2). Le total de 13 canaux, contesté par l’audit, est juste : l’auditeur avait sauté la ligne « clavier mono, DI passive ».
+- **0.7, 0.8, Annexe B.** L’autonomie ne comptait pas les pieds. Le parc n’a qu’un pied, pris par la batterie ; un groupe rock à quatre voix en demande cinq de plus. « 100 % autonome » → « micros et DI 100 % personnels » ; angle mort « Pieds de micro » ajouté en 0.8.
+- **2.6.** « Trois erreurs, une lacune et une divergence » → quatre erreurs, une lacune, une divergence et une contradiction (la section en listait déjà davantage). Ajout : le point 6 du Vintage 1970s EQ est libellé « L-Mid Freq » dans le manuel français (6.6.3) alors qu’il règle le H-Mid.
+- **2.9.** Zone Isolation : « interaction négligeable » → « faible mais pas nulle : moins de 6 dB entre crête et creux ». Phrase de synthèse nuancée. Calcul ajouté : à 4 dB d’écart, +4,3 / −8,7 dB (≈ ±6,5 dB) ; à 10 dB, +2,4 / −3,3 dB (5,7 dB crête à creux). Source publiée ajoutée : Boyce, *Introduction to Live Sound Reinforcement* (2014), §12.4, p. 253–254 (« minimisé » à partir de 9 dB). L’édition et les pages de McCarthy restent à relever.
+- **3.1, kick.** « une distorsion vient du micro lui-même » → hypothèse à vérifier : reculer le micro, puis changer de câble et de micro.
+- **7.3.** Ligne Larsen : « couper −3 à −6 dB » contredisait la règle d’or (±3 dB) → environ −3 dB sur la seule bande (Shure, « How to Control Feedback in a Sound System », 2013), même geste qu’en 7.11 ; au-delà, placement ou niveau.
+- **5.3, 6.1, 6.2, 6.4, 6.5.** Temps de delay de secours : « 375/500 ms feel ternaire » et « 250/500 ms binaire » → calcul au tempo (noire = 60 000 / BPM), les valeurs citées ne valant qu’à 120 BPM ; 375 ms est une croche pointée, pas un triolet.
+- **7.10.** « empêche mécaniquement un larsen numérique » et « boucle structurellement impossible » → le verrou de source empêche la boucle d’un canal sur lui-même, pas une erreur de routage dans le logiciel hôte. Premier essai à bas niveau.
+- **8.6, Ui24R.** GEQ 31 bandes : « masters de sous-groupe et Aux » → sorties (Master L/R et masters Aux) ; les masters de sous-groupe ont l’EQ paramétrique (manuel Ui24R, Master Channel et 5.2). Attaque du compresseur : le manuel dit « microsecondes » dans le texte et 1–400 ms dans les spécifications, contradiction signalée.
+- **8.7.** État daté du 23 novembre. Ligne ajoutée : « Routage hôte de l’insert USB, sans boucle ».
+
+*Non retenu.* 2.4 : l’explication du release du limiteur (la réduction de gain qui suit la période) est l’explication habituelle, et l’audit n’apporte aucune source contraire. Retour « approches par style » : la source techno n’est pas notée « Suffisant ? Oui », le retour écrit « aucune de techno au sens strict ».
 
 ### CE QUI CHANGE PAR RAPPORT À LA V34
 

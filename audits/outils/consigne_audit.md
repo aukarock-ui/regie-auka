@@ -24,7 +24,7 @@ Termine par « ## Avis général » (5 lignes au plus).
 - Mieux vaut 10 remarques solides que 40 fragiles.
 
 # Hors périmètre
-- La table des matières, la section « HISTORIQUE — NE PAS CITER » (valeurs volontairement périmées), et ce que liste le changelog V35 ci-dessous, sauf si la correction elle-même est fausse.
+- La table des matières, la section « HISTORIQUE — NE PAS CITER » (valeurs volontairement périmées), et ce que liste le changelog V36 ci-dessous, sauf si la correction elle-même est fausse.
 - Les éléments marqués « à tester » ou inscrits au registre 8.7 : signale-les seulement si la méthode prévue pour les tester est fausse.
 - Les choix de style de Louis (compression forte du Bus Voix en métal, par exemple) : ce sont des décisions, pas des erreurs.
 

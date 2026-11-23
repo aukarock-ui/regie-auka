@@ -1,0 +1,10 @@
+# Journal des modifications de la régie
+
+Chaque modification publiée dans ce Drive, la plus récente en haut. Une entrée par changement : date, fichier, avant → après (résumé), source, validation.
+
+Le projet claude.ai « Mix Live » relit ce journal avant toute mise à jour du guide, pour récupérer ce qui a été publié depuis la régie.
+
+---
+
+- **2026-11-23** — `guide/Guide_Mixage_Live_V36.md` et `guide/Registre_verifications_console_V36.docx` (V35 → V36) : 9 micros au lieu de 8 (0.7) ; pieds de micro hors autonomie (0.7, 0.8, Annexe B) ; errata 2.6 recomptés + coquille du Vintage 1970s ; 2.9 zone Isolation « négligeable » → « faible mais pas nulle », calcul ajouté ; 3.1 kick, cause de distorsion en hypothèse ; 7.3 Larsen −3 à −6 dB → −3 dB sur une bande (cohérent avec la règle d’or et 7.11) ; 7.10 portée du verrou USB limitée au même canal ; 8.7 daté du 23/11 + ligne « routage hôte de l’insert USB ». Temps de delay de secours ramenés à un calcul au tempo (5.3, Partie 6) ; Ui24R : GEQ sur les sorties, pas sur les sous-groupes (8.6). Sources ajoutées : Boyce 2014 (§12.4, p. 253–254) et Shure 2013 (ring out à environ 3 dB). Détail dans le changelog V36 du guide. Source : audit externe du 23/11 trié (dépôt GitHub, `audits/2026-11-23-audit-externe-tri.md`) et relecture de Claude Code. Validé par Louis (« fais tout le travail », 23/11).
+- **2026-11-23** — `CLAUDE.md` : Claude Code peut désormais publier lui-même des améliorations dans ce Drive, après validation de Louis (section « Faire évoluer le Drive »). Avant : modifications réservées au projet « Mix Live », la régie ne déposait que des retours. Source : demande de Louis. Validé par Louis.

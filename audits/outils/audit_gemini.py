@@ -1,14 +1,18 @@
 """Audit du guide par Gemini, en deux passes, via le proxy local (127.0.0.1:8000).
 
-Usage :  python audits/outils/audit_gemini.py [A|B|AB] [modele]
+Usage :  python audits/outils/audit_gemini.py [A1,A2,B1,B2|taille] [modele]
+A = Parties 0-4, B = Parties 5-8 ; 1 ou 2 = partie du mode d'emploi jointe (limite de 250 k tokens/min).
 Les réponses brutes vont dans audits/_brut/ (non versionné) : elles ne valent
 rien avant le tri contre le guide et les manuels (skill audit-guide-par-ia-externe).
 """
-import json, sys, time, urllib.request, urllib.error
+import functools, json, sys, time, urllib.request, urllib.error
+
+print = functools.partial(print, flush=True)  # progression visible même en arrière-plan
 from pathlib import Path
 
 RACINE = Path(__file__).resolve().parents[2]
-GUIDE = RACINE / "guide" / "Guide_Mixage_Live_V35.md"
+GUIDE = max((RACINE / "guide").glob("Guide_Mixage_Live_V*.md"), key=lambda f: int(f.stem.rsplit("V", 1)[1]))
+VERSION = GUIDE.stem.rsplit("_", 1)[1]
 MANUELS = RACINE / "manuels"
 SORTIE = RACINE / "audits" / "_brut"
 PROXY = "http://127.0.0.1:8000/v1beta/models/{m}:generateContent"
@@ -29,7 +33,7 @@ def passe(nom):
     idx = {l.split(" — ")[0]: i + 1 for i, l in enumerate(g) if l.startswith("# ")}
     p5, hist = idx["# PARTIE 5"], idx["# HISTORIQUE"]
     bloc = lignes(1, 62)  # titre + Bloc assistant (règles de priorité)
-    changelog_v35 = lignes(hist, hist + 20)
+    changelog = lignes(hist, hist + 20)
     partie_manuel = nom[1] if len(nom) > 1 else "12"
     nom = nom[0]
     if nom == "A":
@@ -52,7 +56,7 @@ def passe(nom):
         perim += (f" Seule la partie {partie_manuel} du mode d'emploi est jointe à cette passe (limite de taille) : "
                   "pour un point qui relèverait de l'autre partie, écris « vérifiable sans manuel : non » plutôt que de citer de mémoire.")
     texte = (perim
-             + doc("CHANGELOG V35 (hors périmètre)", changelog_v35)
+             + doc(f"CHANGELOG {VERSION} (hors périmètre)", changelog)
              + doc("GUIDE — en-tête et Bloc assistant", bloc)
              + doc("GUIDE — partie auditée", corps)
              + extra
@@ -78,8 +82,8 @@ def appel(modele, consigne, texte, essais=6):
             msg = e.read().decode("utf-8", "replace")
             quota = [l.strip() for l in msg.split("\\n") if "metric" in l or "limit" in l.lower()]
             print(f"  essai {n} : HTTP {e.code} " + (" / ".join(quota)[:600] if quota else msg[:300]))
-            if e.code == 429 and "jour" in msg.lower():
-                break
+            if (e.code == 429 and ("perday" in msg.lower() or "jour" in msg.lower())) or "aucune cle disponible" in msg:
+                sys.exit("Quota du jour épuisé : relancer après la remise à zéro (minuit heure du Pacifique, 9 h à Paris).")
         except Exception as e:  # réseau, réponse vide, blocage
             print(f"  essai {n} : {e}")
         time.sleep(70)

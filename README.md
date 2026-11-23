@@ -12,8 +12,8 @@ Pour relire la méthode (humain ou IA) et laisser des notes, voir [`AUDIT.md`](A
 
 | Chemin | Rôle |
 |---|---|
-| `guide/Guide_Mixage_Live_V35.md` | **La référence** : matériel, gain staging, Fat Channel, presets par source, bus, FX, scènes par style, workflow, transposition sur d'autres consoles, registre des vérifications 8.7 |
-| `guide/Registre_verifications_console_V35.docx` | Registre des vérifications console |
+| `guide/Guide_Mixage_Live_V36.md` | **La référence** : matériel, gain staging, Fat Channel, presets par source, bus, FX, scènes par style, workflow, transposition sur d'autres consoles, registre des vérifications 8.7 |
+| `guide/Registre_verifications_console_V36.docx` | Registre des vérifications console |
 | `contexte/` | Faits utiles hors guide : parc matériel, comportements console vérifiés |
 | `retours/` | Constatations faites en régie ou en recherche, **pas encore intégrées** au guide |
 | `skills/` | Skills Claude de la méthode (copie de référence ; la version active est celle du compte claude.ai) |
