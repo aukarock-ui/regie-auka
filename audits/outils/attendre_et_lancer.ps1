@@ -1,4 +1,4 @@
-# Attend que la clé Gemini sorte de sa pause (quota du jour), puis lance les deux passes d'audit.
+# Attend que la clé Gemini sorte de sa pause (quota du jour), puis lance les quatre passes d'audit.
 $racine = Split-Path (Split-Path $PSScriptRoot)
 $vbs = Join-Path $env:USERPROFILE '.config\gemini\start-proxy.vbs'
 for ($i = 0; $i -lt 96; $i++) {   # 16 h au plus, une vérification toutes les 10 min
@@ -14,4 +14,6 @@ for ($i = 0; $i -lt 96; $i++) {   # 16 h au plus, une vérification toutes les 1
     Start-Sleep -Seconds 600
 }
 Set-Location $racine
-python audits/outils/audit_gemini.py AB gemini-flash-latest
+# Quatre passes d'environ 110 k tokens, espacées de 130 s (limite gratuite : 250 k tokens d'entrée par minute).
+# Attention : /health peut dire « disponible » juste après une relance du proxy alors que le quota n'est pas revenu.
+python audits/outils/audit_gemini.py A1,A2,B1,B2 gemini-flash-latest
