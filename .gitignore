@@ -1,0 +1,10 @@
+# Documentation constructeur : droits d'auteur, reste sur le Drive (dossier manuels/)
+manuels/
+# Serveur console : dépôt à part (fork de zarfld/presonus-studiolive-mcp, branche guide-auka), livré en zip par le Drive
+code/
+# Copie du zip des skills : les SKILL.md dézippés sont versionnés dans skills/
+skills/skills.zip
+# Réglages locaux du PC
+.mcp.json
+.claude/settings.local.json
+_telechargements/
