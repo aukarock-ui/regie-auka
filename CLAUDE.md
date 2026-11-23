@@ -54,10 +54,10 @@ Dossiers du Drive (identifiants pour le connecteur) :
 
 ## Où sont les choses dans ce dossier
 
-- `guide/Guide_Mixage_Live_V37.md` : **la référence unique** (presets, bus, gain staging, scènes de style, correspondances multi-consoles, registre des vérifications 8.7). Le consulter, jamais le reconstituer de mémoire. La section `HISTORIQUE — NE PAS CITER` contient volontairement des valeurs périmées.
+- `guide/Guide_Mixage_Live_V38.md` : **la référence unique** (presets, bus, gain staging, scènes de style, correspondances multi-consoles, registre des vérifications 8.7). Le consulter, jamais le reconstituer de mémoire. La section `HISTORIQUE — NE PAS CITER` contient volontairement des valeurs périmées.
 - `contexte/` : faits utiles qui ne sont pas tous dans le guide (parc matériel, système de la grande scène, comportements console vérifiés). En cas de désaccord avec le guide, le guide prime et l'écart est signalé à Louis.
 - `manuels/` : documentation constructeur. Les `.txt` sont des extractions pour la recherche ; l'extraction casse les tableaux, donc pour un tableau décisif, ouvrir la page du PDF.
-- `skills/` : copie de secours des skills de la méthode.
+- `skills/` : copie de secours des skills de la méthode (`skills.zip` sur le Drive et en local ; sur GitHub, seulement les `SKILL.md` dézippés).
 - `code/` : le serveur MCP studiolive-mix-assistant, qui relie Claude à la 32SC (voir ci-dessous).
 
 ## Formats attendus
@@ -82,6 +82,8 @@ Dans les trois cas, ce que Louis décide ou valide à l'écoute devient un retou
 Les skills de la méthode arrivent automatiquement avec le compte claude.ai de Louis : `maj-guide-mixage`, `audit-guide-par-ia-externe`, `preparer-evenement-sono`, `transposer-preset-console`, `integrer-retour-terrain`, `demarrer-regie-auka`, `methode-calage`, `nouveau-systeme`, `fiche-evenement`. Les suivre quand la tâche correspond. Une copie de secours est dans `skills/skills.zip` (dossier Drive `skills`) : si l'un d'eux manque dans la session, l'installer depuis ce zip (skill `demarrer-regie-auka`, étape 4 ter), sans écraser un skill déjà présent.
 
 ## Console en direct (serveur MCP `studiolive`)
+
+Sous Windows, « UC Surface » désigne la surface de contrôle intégrée à **Universal Control** (5.1.1 sur le PC de régie) : il n'y a pas d'application séparée. Le pilote ASIO s'appelle **StudioLive Series III ASIO**.
 
 Règles non négociables quand le serveur est connecté :
 

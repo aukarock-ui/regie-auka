@@ -4,7 +4,7 @@ Repris de la mémoire du projet claude.ai « Mix Live » (état au 22 novembre 2
 
 ## Console et informatique
 
-- PreSonus StudioLive 32SC + stagebox 16R, firmware 3.4.0.111374, pilotée par UC Surface.
+- PreSonus StudioLive 32SC + stagebox 16R, firmware 3.4.0.111374, pilotée sous Windows par Universal Control 5.1.1 (la surface que le guide appelle UC Surface ; pilote ASIO « StudioLive Series III ASIO »).
 - Câblage standard : 6 sorties Mix XLR de la 16R = FlexMix 1–6 (retours) ; sous-multipaire 8 lignes de la 16R au centre de la batterie (canaux 1–8) ; multipaire 16 lignes de la scène vers les entrées locales de la 32SC (canaux 17–32) ; un XLR de 20 m de secours à la régie.
 - PC : MSI GL62 (i5-6300HQ, 32 Go, SSD), Windows. Fender Studio Pro 8 (ex-Studio One Pro), Ableton Live 11 Suite *(relevé sur le PC le 23/11/2026, `retours/2026-11-23_PC-regie.md`)*.
 - Plug-ins installés au 23/11/2026 : FabFilter Total Bundle 2023.3 (dont Pro-R version 1, Saturn 2 — 2× suréchantillonnage max en live —, Pro-DS, Pro-G, Pro-L 2, Timeless 3), Valhalla Supermassive et Space Modulator, Exponential Audio R2, Waves Ultimate, SSL (autoBUS, autoDYN, autoEQ, Vocalstrip 2), Lindell 902, TDR Nova, Voxengo SPAN, SoundID Reference, Youlean Loudness Meter. **Absents** : Pro-R 2, suite Valhalla complète, Decapitator, SuperPlate.

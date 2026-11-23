@@ -1,8 +1,8 @@
-**GUIDE DE MIXAGE LIVE — V37**
+**GUIDE DE MIXAGE LIVE — V38**
 
 ÉDITION AUTONOMIE — PreSonus StudioLive 32SC + 16R
 
-*Firmware 3.4.0.111374 · UC Surface · Écosystème Milan AVB*
+*Firmware 3.4.0.111374 · UC Surface (sous Windows : la surface de contrôle intégrée à Universal Control 5.1.1, sans application séparée) · Écosystème Milan AVB*
 
 *Punk · Rock · Métal · Hip-Hop · Reggae · Dub · Techno Live*
 
@@ -2145,7 +2145,7 @@ Verrouiller le fader de A à Unity, **dans les deux variantes**. Le manuel situe
 
 *Studio One :* pilote choisi dans **Studio One > Options > Audio Setup** (Windows ; Studio One > Préférences sur Mac) ; entrées et sorties de la chanson dans **Song > Song Setup**, onglet **Audio I/O Setup**. *Chemins relevés sur une source tierce, pas dans un manuel au projet — à confirmer à l’écran.* Canal Audio Input mappé sur la paire USB du départ. Plugin sur ce canal ou un bus FX dédié. Bus de sortie routé vers la paire USB du retour. **Bouton Monitor activé** sur le canal d’entrée pour un passage continu, pas juste en lecture.
 
-*Ableton Live (12.4) :* Preferences → Audio → ASIO Universal Control, canaux activés dans Input/Output Config. Piste audio ou piste de retour (Ctrl+Alt+T, plus logique si plusieurs sources partagent le même effet) : Input = Ext. In sur la paire USB du départ, Output = Ext. Out sur la paire USB du retour. **Monitor : In** (jamais Auto), essentiel puisqu’on ne joue pas un clip.
+*Ableton Live 11 Suite (version installée ; la procédure avait été écrite pour Live 12.4) :* Options → Preferences → onglet Audio, Driver Type **ASIO**, Audio Device **StudioLive Series III ASIO** (nom relevé dans le registre Windows du PC de régie le 23/11/2026 ; l’ancien texte disait « ASIO Universal Control »), canaux activés dans Input Config / Output Config. *Chemin de menu à confirmer à l’écran sous Live 11.* Piste audio ou piste de retour (Ctrl+Alt+T, plus logique si plusieurs sources partagent le même effet) : Input = Ext. In sur la paire USB du départ, Output = Ext. Out sur la paire USB du retour. **Monitor : In** (jamais Auto), essentiel puisqu’on ne joue pas un clip.
 
 **Le PC : ce qu’il faut savoir avant de lui faire confiance.** Machine de référence ici : MSI GL62, **i5-6300HQ (quad-core, sans Hyper-Threading — moins de marge de parallélisation qu’un i7 de la même génération)**, 32 Go RAM, SSD (remplacé dès l’achat, pas de risque HDD). Buffer ASIO : commencer à 128 échantillons, descendre à 64 seulement pour un insert temps réel vraiment sensible. Câble USB direct, jamais de hub. Diagnostic de référence avant tout réglage à l’aveugle : **LatencyMon** (gratuit) — latence DPC max à surveiller sous 1000 µs ; sur une config avec GPU NVIDIA, le pilote audio HDMI de la carte graphique est un coupable fréquent des pics, à désactiver dans le Gestionnaire de périphériques si la sortie HDMI n’est pas utilisée.
 
@@ -2161,7 +2161,7 @@ Verrouiller le fader de A à Unity, **dans les deux variantes**. Le manuel situe
 
 **Écarté pour cet usage, et pourquoi :** Oeksound Soothe2 a une latence fixe d’environ 40 ms — inutilisable en insert live, ça décale la voix façade du reste du groupe et crée le même comb filtering que documenté sur les retards non maîtrisés (7.7). Soothe3 introduit un mode Low Latency (quasi nul) explicitement pensé live — à garder en tête pour un futur problème de résonance large spectre (cymbale stridente, ampli agressif), pas pour du simple de-essing aujourd’hui.
 
-**Coloration/saturation — utile en complément, jamais prioritaire.** Le Fat Channel couvre déjà bien ce terrain (Tube CB, VT-1, Tube EQ). Si un besoin réel persiste : **FabFilter Pro-R2** (reverb, zero-latency confirmé — la confusion courante avec la latence linéaire-phase de Pro-Q ne s’applique pas à Pro-R), **Valhalla VintageVerb/Room/Delay** (légers, conçus pour tourner par dizaines d’instances), **Soundtoys SuperPlate**, **Decapitator** (saturation légère) ou **FabFilter Saturn2** (plus riche ; **sur une piste parallèle uniquement**, 2× d’oversampling au maximum — sur la piste de nettoyage, la règle « ni look-ahead ni oversampling » ne souffre pas d’exception). *Installé au 23/11/2026 (retour PC) : Pro-R en version 1 (pas Pro-R 2, dont la latence nulle est la seule documentée ici — vérifier celle de la version 1 au clap-test), Saturn 2, Valhalla Supermassive et Space Modulator ; ni la suite Valhalla, ni SuperPlate, ni Decapitator.* Écarter **LiquidSonics Seventh Heaven Professional** sur ce PC précis : specs officielles 8 cœurs physiques + 32 Go recommandés, très au-dessus d’un quad-core sans Hyper-Threading — basculer sur la version Standard ou sur Valhalla si une reverb premium est vraiment nécessaire.
+**Coloration/saturation — utile en complément, jamais prioritaire.** Le Fat Channel couvre déjà bien ce terrain (Tube CB, VT-1, Tube EQ). Si un besoin réel persiste : **FabFilter Pro-R2** (*non installé : c’est Pro-R version 1 qui est sur le PC*) (reverb, zero-latency confirmé — la confusion courante avec la latence linéaire-phase de Pro-Q ne s’applique pas à Pro-R), **Valhalla VintageVerb/Room/Delay** (*non installés*) (légers, conçus pour tourner par dizaines d’instances), **Soundtoys SuperPlate**, **Decapitator** (*non installés* ; saturation légère) ou **FabFilter Saturn2** (plus riche ; **sur une piste parallèle uniquement**, 2× d’oversampling au maximum — sur la piste de nettoyage, la règle « ni look-ahead ni oversampling » ne souffre pas d’exception). *Installé au 23/11/2026 (retour PC) : Pro-R en version 1 (pas Pro-R 2, dont la latence nulle est la seule documentée ici — vérifier celle de la version 1 au clap-test), Saturn 2, Valhalla Supermassive et Space Modulator ; ni la suite Valhalla, ni SuperPlate, ni Decapitator.* Écarter **LiquidSonics Seventh Heaven Professional** sur ce PC précis : specs officielles 8 cœurs physiques + 32 Go recommandés, très au-dessus d’un quad-core sans Hyper-Threading — basculer sur la version Standard ou sur Valhalla si une reverb premium est vraiment nécessaire.
 
 *Contrainte d’exploitation à ne pas oublier :* la voie C impose un ordinateur allumé et fonctionnel pendant tout le set — un point de défaillance de plus, au même titre que le lien AVB (7.9).
 
@@ -2800,6 +2800,14 @@ Ce qui reste en place, ce qui bouge, ce qui se démonte. Sur un plateau serré, 
 # HISTORIQUE — NE PAS CITER
 
 *Section de traçabilité. Les valeurs « avant » sont périmées et ne doivent jamais être reprises comme valeurs de travail : seul le corps du guide fait foi. Une recherche textuelle peut tomber ici avant d’atteindre la prescription courante : la protection est la consigne du bloc assistant, pas le texte.*
+
+### CE QUI CHANGE PAR RAPPORT À LA V37
+
+Source : audit statique de la V37 du 23 novembre 2026 (commit bba30f0), trié dans `audits/2026-11-23-audit-v37-tri.md`. Le nom du pilote ASIO a été relevé directement dans le registre Windows du PC de régie.
+
+- **7.10, Ableton.** « Ableton Live (12.4) » → **Live 11 Suite**, la version installée. Le pilote s’appelle **StudioLive Series III ASIO**, pas « ASIO Universal Control ». Le chemin de menu reste à confirmer à l’écran.
+- **En-tête.** « UC Surface » désigne, sous Windows, la surface de contrôle intégrée à Universal Control 5.1.1. Il n’y a pas d’application séparée.
+- **7.10, options de traitement.** Pro-R 2, les reverbs et delays Valhalla, SuperPlate et Decapitator sont marqués « non installés » à l’endroit même où ils sont proposés.
 
 ### CE QUI CHANGE PAR RAPPORT À LA V36
 

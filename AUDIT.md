@@ -5,7 +5,7 @@ Tu relis la méthode de mixage live d'un technicien son. Le but est de trouver d
 ## Quoi lire, dans l'ordre
 
 1. `CLAUDE.md` : règles absolues (zéro approximation, distinguer fait vérifié et inférence).
-2. `guide/Guide_Mixage_Live_V37.md` : la méthode. Le « Bloc assistant » en tête explique les règles de priorité.
+2. `guide/Guide_Mixage_Live_V38.md` : la méthode. Le « Bloc assistant » en tête explique les règles de priorité.
 3. `retours/` : propositions pas encore intégrées, en particulier `2026-11-23_approches-par-style.md` (intention musicale et références par style).
 4. `contexte/` : parc matériel et comportements console vérifiés.
 5. Les manuels cités (StudioLive 32SC/16R parties 1 et 2, addendum Fat Channel, Universal Control) ne sont pas dans le dépôt : demander à Louis un lien vers le dossier Drive `Regie-Auka/manuels`.

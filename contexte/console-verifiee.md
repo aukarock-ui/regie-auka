@@ -1,6 +1,6 @@
 # Comportements console vérifiés et principes de travail
 
-Repris de la mémoire du projet claude.ai « Mix Live » (état au 22 novembre 2026). Certaines lignes datent d'avant la V35 du guide : **le guide prime** ; signaler à Louis tout écart.
+Repris de la mémoire du projet claude.ai « Mix Live » (état au 22 novembre 2026 ; précisions datées du 23 novembre). Certaines lignes datent d'avant la V35 du guide : **le guide prime** ; signaler à Louis tout écart.
 
 ## Corrections techniques vérifiées
 
@@ -19,7 +19,7 @@ Repris de la mémoire du projet claude.ai « Mix Live » (état au 22 novembre 2
 - Classic Compressor : pas de commande Attack.
 - 16R autonome : fonctionne sans console via UC Surface mais demande un routeur, elle n'émet pas de WiFi.
 - Sources ligne TRS symétriques : directement sur les combos de la 16R, sans DI.
-- FabFilter Pro-R 2 : zéro latence par conception. *C'est Pro-R version 1 qui est installé (23/11/2026) : sa latence reste à vérifier au clap-test.*
+- FabFilter Pro-R 2 (**non installé**) : zéro latence par conception. *Sur le PC, c'est Pro-R version 1 (23/11/2026) : sa latence reste à vérifier au clap-test.*
 - LiquidSonics Seventh Heaven Pro : 8 cœurs physiques et 32 Go conseillés, risque sur le PC actuel.
 
 ## Principes de travail
