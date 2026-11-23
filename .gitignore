@@ -8,3 +8,5 @@ skills/skills.zip
 .mcp.json
 .claude/settings.local.json
 _telechargements/
+# Réponses brutes des IA auditrices : non triées, ne pas publier
+audits/_brut/
