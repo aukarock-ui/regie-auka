@@ -9,9 +9,14 @@ description: "Mettre à jour le Guide de Mixage Live (projet Mix Live) après un
 
 ## 0. Mise en place
 
+0. **Synchroniser avec la régie.** Claude Code peut publier des améliorations dans le Drive `Regie-Auka` (id `1NhEZ8haRy-l8kzS-ICPvLANI-ZNXozv0`). Avant tout, lire `VERSION.md` et `JOURNAL.md` à la racine du Drive avec le connecteur :
+   - si le guide du Drive (dossier `guide`, id `1Q-i3RR9fDn_nDgTjihXU5S3O2n4w_yJq`) porte un numéro plus récent que celui du projet, le télécharger, le comparer à la version du projet et montrer à Louis ce qui a changé. Après son accord, il devient la version courante du projet, et l'ancienne est supprimée ;
+   - reprendre les entrées du journal postérieures à la dernière publication du projet (patchs de code, propositions de skills, contexte) et les traiter avec Louis ;
+   - si le projet et le Drive ont chacun évolué de leur côté, ne rien écraser : montrer les deux versions à Louis et le laisser trancher.
 1. Lire la version courante du guide dans le projet (`claude/Guide_Mixage_Live_Vxx.md`). S'il y a plusieurs fichiers de guide, le signaler à Louis avant de continuer.
 2. Copier ce fichier dans le dossier de travail temporaire sous le nom `vXX.md`. C'est la seule source : ne jamais repartir d'un docx ou d'un souvenir de conversation.
-3. Extraire en texte les manuels utiles (mode d'emploi StudioLive parties 1 et 2, addendum Fat Channel, manuel UC Surface) pour pouvoir y chercher avec grep. Les tableaux perdent leur mise en page à l'extraction : relire les lignes brutes avant de conclure sur un tableau.
+3. Ne pas charger le guide entier dans la conversation (330 Ko, environ 100 000 tokens) : chercher avec grep, lire la section utile ; le script de l'étape 2 travaille sur le fichier.
+4. Extraire en texte les manuels utiles (mode d'emploi StudioLive parties 1 et 2, addendum Fat Channel, manuel UC Surface) pour pouvoir y chercher avec grep. Les tableaux perdent leur mise en page à l'extraction : relire les lignes brutes avant de conclure sur un tableau.
 
 ## 1. Vérifier chaque remarque avant de l'accepter
 
@@ -22,6 +27,8 @@ Un audit externe est non fiable par défaut. Pour chaque point, dans l'ordre :
 3. Si le point est un calcul : refaire le calcul.
 4. Classer : retenu, retenu en partie (dire quelle partie), rejeté (avec la phrase du manuel qui le contredit).
 5. Une valeur proposée par l'auditeur sans source n'entre jamais dans le guide. On garde la méthode ou le critère d'écoute, pas le chiffre.
+
+**Dans Claude Code à la régie**, où les agents de `.claude/agents/` existent : donner tous les points de l'audit **en un seul appel** à l'agent `verif-manuel` (Haiku, lecture seule), qui rend pour chacun CONFIRMÉ, CONTREDIT, INTROUVABLE ou PARTIEL avec la source. Le classement final (retenu, en partie, rejeté) reste à faire soi-même à partir de ses verdicts. Dans le projet claude.ai, faire la vérification soi-même.
 
 Ne jamais annoncer une correction après une lecture partielle : lire la section entière du guide et la section entière du manuel.
 
@@ -65,6 +72,8 @@ Les erreurs trouvées par les audits suivants viennent presque toutes des passag
 3. Relire le nouveau texte contre lui-même : deux corrections de la même version peuvent se contredire.
 4. Chercher par script les formulations périmées qui doivent avoir disparu du corps (compter les occurrences, attendre zéro).
 
+5. **Dans Claude Code à la régie**, où les agents de `.claude/agents/` existent : faire relire le passage de `vXX.md` à `vNN.md` par l'agent `relecteur` (lecture seule) avant de présenter la version à Louis, et traiter chacun de ses points.
+
 Si une erreur est de mon fait, le dire clairement à Louis au lieu de la corriger en silence.
 
 ## 5. Changelog
@@ -80,8 +89,10 @@ Toute valeur qui dépend d'une vérification sur la console reçoit une ligne au
 1. `pandoc vNN.md -o Guide_Mixage_Live_VNN.docx --from=markdown`, puis `zip -d Guide_Mixage_Live_VNN.docx '*/'`. Si le registre 8.7 a changé, régénérer aussi `Registre_verifications_console_VNN.docx` à partir de la section 8.7 du nouveau guide, jamais à partir de l'ancien registre.
 2. Écrire `claude/Guide_Mixage_Live_VNN.md` dans le projet, puis supprimer `claude/Guide_Mixage_Live_VXX.md`. Une seule version du guide dans le projet.
 3. Envoyer le docx à Louis.
-4. Publier sur le Google Drive de régie, dossier `Regie-Auka` (id `1NhEZ8haRy-l8kzS-ICPvLANI-ZNXozv0`), sous-dossier `guide` (id `1Q-i3RR9fDn_nDgTjihXU5S3O2n4w_yJq`) : créer `Guide_Mixage_Live_VNN.md` (type `text/markdown`, conversion Google désactivée), puis mettre l'ancienne version à la corbeille. Le connecteur ne remplace pas le contenu d'un fichier : on crée le nouveau, puis on jette l'ancien. Faire de même pour le registre s'il a changé, et pour `VERSION.md` à la racine (version du guide, date, état du contexte). Si `CLAUDE.md` cite le nom du fichier du guide, le recréer aussi. Ne jamais laisser deux versions du guide dans le dossier.
-5. Lire le sous-dossier `retours` (id `1D6Farkern9JFyf25iUgvGf17o1W2h-XN`) : les notes de régie qui y arrivent depuis le PC sont des retours de terrain à traiter avec le skill `integrer-retour-terrain`.
+4. Rien n'est publié (Drive, GitHub) avant que Louis ait validé explicitement la version finale.
+5. Publier sur le Google Drive de régie, dossier `Regie-Auka` (id `1NhEZ8haRy-l8kzS-ICPvLANI-ZNXozv0`), sous-dossier `guide` (id `1Q-i3RR9fDn_nDgTjihXU5S3O2n4w_yJq`) : créer `Guide_Mixage_Live_VNN.md` (type `text/markdown`, conversion Google désactivée), puis mettre l'ancienne version à la corbeille. Le connecteur ne remplace pas le contenu d'un fichier : on crée le nouveau, puis on jette l'ancien. Faire de même pour le registre s'il a changé, et pour `VERSION.md` à la racine (version du guide, date, état du contexte). Si `CLAUDE.md` cite le nom du fichier du guide, le recréer aussi. Ne jamais laisser deux versions du guide dans le dossier.
+6. Tracer : entrée en tête de `JOURNAL.md`, mise à jour de `VERSION.md` et de la ligne du chantier dans `TACHES.md`.
+7. Lire le sous-dossier `retours` (id `1D6Farkern9JFyf25iUgvGf17o1W2h-XN`) : les notes de régie qui y arrivent depuis le PC sont des retours de terrain à traiter avec le skill `integrer-retour-terrain`.
 
 ## 7bis. Avant tout audit externe
 

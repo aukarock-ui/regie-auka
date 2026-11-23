@@ -17,3 +17,14 @@
 Avec le compte claude.ai, ces skills arrivent tout seuls dans Claude Code. Cette copie sert de référence et de secours : `demarrer-regie-auka` installe depuis le zip ceux qui manqueraient, sans écraser ceux qui sont déjà là.
 
 La version de référence de chaque skill est celle du compte claude.ai. Le zip est republié depuis le projet « Mix Live » quand un skill change.
+
+## À recopier dans le compte claude.ai (23/11/2026)
+
+Le zip du 23/11 contient quatre skills modifiés depuis la régie, qui ne sont pas encore dans le compte. Tant qu'ils n'y sont pas, Claude Code continue d'utiliser les anciennes versions du compte. Pour chacun, remplacer le skill du compte par le `SKILL.md` de ce dossier (Paramètres → Capacités → Skills, ou depuis le projet « Mix Live ») :
+
+- `maj-guide-mixage` (repart de la version du compte) : ne pas charger le guide entier, vérification par l'agent `verif-manuel`, relecture par l'agent `relecteur`, publication seulement après validation, mise à jour de `TACHES.md`.
+- `integrer-retour-terrain` : recherche des lignes par `verif-manuel`, mise à jour de `TACHES.md`.
+- `audit-guide-par-ia-externe` : tri par `verif-manuel`, voies gratuites d'abord (proxy Gemini local, opencode), trois points déjà vérifiés de plus.
+- `demarrer-regie-auka` : **ne plus effacer le dépôt git du serveur** à la mise à jour, installer `config-claude` (permissions et agents), serveur déclaré dans `.mcp.json` avec le journal des écritures.
+
+Les agents ne fonctionnent que dans Claude Code, sur le PC de régie. Dans claude.ai, les skills disent de faire la vérification soi-même.

@@ -11,7 +11,7 @@ Ce skill ne s'applique pas dans une session cloud ou claude.ai : seulement quand
 
 ## Repères
 
-- Dossier Drive racine : `Regie-Auka`, id `1NhEZ8haRy-l8kzS-ICPvLANI-ZNXozv0`. Sous-dossiers : `guide`, `contexte`, `manuels`, `retours`, `code`, `skills`. Si l'id ne répond plus, chercher le dossier par son nom avec le connecteur Google Drive.
+- Dossier Drive racine : `Regie-Auka`, id `1NhEZ8haRy-l8kzS-ICPvLANI-ZNXozv0`. Sous-dossiers : `guide`, `contexte`, `manuels`, `retours`, `code`, `skills`, `audits`, `config-claude`. Si l'id ne répond plus, chercher le dossier par son nom avec le connecteur Google Drive.
 - Dossier local : `%USERPROFILE%\Regie-Auka` (pas besoin de droits administrateur). Le code va dans `%USERPROFILE%\Regie-Auka\code`.
 - Outils : le connecteur Google Drive (fourni par le compte claude.ai de Louis) pour **lister** les fichiers ; PowerShell et `curl.exe` pour **télécharger** directement sur le disque. Ne jamais faire passer un fichier volumineux par la conversation (pas de `download_file_content` sur le guide, les manuels ou le zip du code).
 
@@ -35,11 +35,14 @@ curl.exe -L --fail -o "$env:USERPROFILE\Regie-Auka\<sous-dossier>\<nom>" "https:
 - Le téléchargement par lien suppose que le dossier `Regie-Auka` est partagé en lecture « toute personne disposant du lien ». Si `curl` renvoie une page HTML de connexion ou une erreur 403/404 au lieu du fichier, le dire à Louis : le partage par lien n'est pas actif.
 - Vérifier chaque fichier téléchargé : taille égale à celle du Drive, et pour un `.md`, `.txt` ou `.json`, que ce n'est pas du HTML.
 - En mode mise à jour, ne retélécharger que les fichiers dont le `modifiedTime` a changé ou qui sont nouveaux ; supprimer localement un guide qui n'existe plus dans le Drive (une seule version à la fois).
-- Ne jamais écraser `retours/` en local : les notes de régie y restent.
+- Ne jamais écraser `retours/` ni `logs/` en local : les notes de régie et le journal des écritures sur la console y restent.
+- `config-claude` (Drive) va dans `.claude\` en local : `settings.json` dans `.claude\settings.json`, les autres `.md` dans `.claude\agents\`. Ce sont les demandes d'autorisation avant écriture sur la console et les agents spécialisés : ne jamais les assouplir à l'installation.
 
 ## 4. Installer ou reconstruire le serveur console
 
-Si `code/studiolive-mix-assistant.zip` est nouveau ou a changé :
+Si `code\studiolive-mix-assistant\.git` existe, c'est le dépôt de travail de la régie, avec un historique qui n'existe nulle part ailleurs : **ne jamais effacer ce dossier**. Comparer son dernier commit (`git -C <dossier> log -1 --format=%h`) au commit cité dans `VERSION.md`. S'ils sont identiques, ne rien faire. Sinon, dézipper le zip du Drive dans un dossier temporaire, montrer à Louis les différences (`git diff --no-index`) et ne rien remplacer sans son accord.
+
+Sinon (première installation, pas de `.git`), si `code/studiolive-mix-assistant.zip` est nouveau ou a changé :
 
 ```powershell
 $dst = "$env:USERPROFILE\Regie-Auka\code\studiolive-mix-assistant"
@@ -77,13 +80,7 @@ Ne jamais écraser un skill déjà présent : deux versions du même skill se co
 ## 5. Brancher le serveur à Claude Code
 
 1. Demander à Louis l'adresse IP de la console, ou la trouver : console et PC sur le même réseau, puis `npx -y pnpm@9 probe:dev discover` dans le dossier du serveur. Relever aussi le numéro de série.
-2. Enregistrer le serveur pour toutes les sessions de Louis (portée utilisateur), écriture coupée :
-
-```powershell
-claude mcp add --scope user studiolive -e PRESONUS_IP=<ip> -e PRESONUS_SERIAL=<serie> -e PRESONUS_ROLE=FOH -e PRESONUS_USB_DEVICE="<nom du périphérique USB, étape 4 bis>" -e PRESONUS_USB_CHANNELS=1-32 -- node "$env:USERPROFILE\Regie-Auka\code\studiolive-mix-assistant\packages\presonus-mcp-server\dist\index.js"
-```
-
-   Si le serveur existe déjà, le retirer d'abord (`claude mcp remove --scope user studiolive`) puis le réenregistrer. Ne jamais ajouter `PRESONUS_WRITE=1` sans demande explicite de Louis.
+2. Déclarer le serveur dans `%USERPROFILE%\Regie-Auka\.mcp.json` (portée projet : il ne se charge que dans ce dossier), écriture coupée. Variables : `PRESONUS_ROLE=FOH`, `SD_ENABLE_ASIO=1` (sans elle, l'analyseur ne voit que 8 canaux en WDM), `PRESONUS_AUDIT_LOG=<Regie-Auka>/logs/ecritures.jsonl` (journal des écritures), puis, une fois relevés console branchée, `PRESONUS_SERIAL`, `PRESONUS_USB_DEVICE` et `PRESONUS_USB_CHANNELS=1-32`. La découverte réseau est automatique : `PRESONUS_IP` n'est qu'un secours. `command` : `node`, `args` : le chemin de `packages\presonus-mcp-server\dist\index.js`. Si le fichier existe, modifier seulement les variables concernées. Ne jamais ajouter `PRESONUS_WRITE=1` sans demande explicite de Louis.
 3. Dire à Louis de relancer Claude Code dans `%USERPROFILE%\Regie-Auka` : le serveur et le `CLAUDE.md` du dossier sont lus au démarrage.
 
 ## 6. Compte rendu

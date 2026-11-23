@@ -52,13 +52,32 @@ Dossiers du Drive (identifiants pour le connecteur) :
 | `code` | `1cI_MkJSsQuE8-8J6w3nvEKCLLbJPEfQ0` |
 | `skills` | `166LNDRhqY4LxQREMYky7DRCMFX7z2M0-` |
 
+## Organisation du travail (sessions et agents)
+
+Le but : le meilleur résultat pour le moins de ressources. L'état du projet vit dans des fichiers, jamais dans la mémoire d'une conversation.
+
+- **En arrivant :** lire `TACHES.md` (tableau de bord), prendre un seul chantier. **En partant :** mettre à jour sa ligne, et `JOURNAL.md` si quelque chose a été publié.
+- **Une session par chantier long** (V39, séance console, code). Une conversation qui dépasse environ 70 % de contexte se termine : `/compact` ciblé ou nouvelle session, qui repart des fichiers.
+- **La session principale décide et publie.** Elle seule trie les audits, modifie le guide, parle à Louis des choix, et publie sur le Drive et GitHub après son accord.
+- **Agents spécialisés** (`.claude/agents/`), appelés pour une vraie tâche, jamais pour deux lignes :
+  - `verif-manuel` (Haiku, lecture seule) : vérifier des affirmations contre les manuels, le guide et le catalogue UC Surface. Donner tous les points d'un audit **en un seul appel**.
+  - `dev-serveur` (Sonnet) : toute modification du serveur console, avec tests et commit local.
+  - `relecteur` (Sonnet, lecture seule) : second regard juste avant de demander à Louis de valider une publication.
+- **Tâches mécaniques** (reformatage, conversion, premier jet) : modèles gratuits (`opencode_ask`, `gemini_ask`), toujours relus.
+- **Ne jamais charger le guide entier** (330 Ko, environ 100 000 tokens) : chercher, puis lire la section utile.
+- Catalogue UC Surface : `node outils/catalogue.mjs "mots clés"`.
+
 ## Où sont les choses dans ce dossier
 
 - `guide/Guide_Mixage_Live_V38.md` : **la référence unique** (presets, bus, gain staging, scènes de style, correspondances multi-consoles, registre des vérifications 8.7). Le consulter, jamais le reconstituer de mémoire. La section `HISTORIQUE — NE PAS CITER` contient volontairement des valeurs périmées.
 - `contexte/` : faits utiles qui ne sont pas tous dans le guide (parc matériel, système de la grande scène, comportements console vérifiés). En cas de désaccord avec le guide, le guide prime et l'écart est signalé à Louis.
 - `manuels/` : documentation constructeur. Les `.txt` sont des extractions pour la recherche ; l'extraction casse les tableaux, donc pour un tableau décisif, ouvrir la page du PDF.
 - `skills/` : copie de secours des skills de la méthode (`skills.zip` sur le Drive et en local ; sur GitHub, seulement les `SKILL.md` dézippés).
-- `code/` : le serveur MCP studiolive-mix-assistant, qui relie Claude à la 32SC (voir ci-dessous).
+- `code/` : le serveur MCP studiolive-mix-assistant, qui relie Claude à la 32SC (voir ci-dessous). C'est un dépôt git local (historique des corrections) : ne jamais effacer ce dossier.
+- `TACHES.md` : les chantiers en cours et leur prochain geste. `JOURNAL.md` : ce qui a été publié.
+- `.claude/` : `settings.json` (autorisation demandée avant toute écriture sur la console) et `agents/` (agents spécialisés). Copie sur le Drive dans `config-claude`.
+- `outils/catalogue.mjs` : recherche dans le catalogue UC Surface. `logs/ecritures.jsonl` : journal des écritures sur la console (local seulement).
+- `audits/` : tris des audits (sur le Drive et GitHub, sauf `audits/_brut/` et `audits/outils/` sur le Drive).
 
 ## Formats attendus
 
@@ -100,7 +119,7 @@ Règles non négociables quand le serveur est connecté :
    - après l'envoi, signaler les clés `notConfirmed` et proposer de vérifier ces canaux dans UC Surface ;
    - tant que la première séance de validation n'est pas faite (voir `code/…/docs/preset-plan.md`), commencer par un seul canal et le faire contrôler par Louis.
    Sans écriture activée, donner la même liste pour qu'il l'applique lui-même, puis relire la console.
-5. **Tout autre réglage** (n'importe quel paramètre d'UC Surface : `describe_parameters` pour trouver la clé) passe par `prepare_settings_plan` puis `apply_settings_plan`. Présenter à Louis chaque ligne (valeur actuelle → nouvelle, niveau de confiance) et les catégories sensibles du plan. Dans `allow`, ne mettre que les catégories que Louis a acceptées nommément : `master`, `unmute`, `phantom`, `busMaster`, `signalgen`, `monitoring`, `patch`, `modelSwitch`, `muteGroup`, `system`, `danger`, `forced` (paramètre déclaré en lecture seule ou interne), `unknown` (clé hors catalogue, en `raw` ou `text`). Aucune clé de la console n'est interdite : la seule barrière est la validation de Louis. Pour `danger` (réseau, extinction, utilisateurs, Bluetooth), prévenir Louis que la liaison ou la console peut être coupée et faire répéter l'accord. Ne pas activer `includeProbeRequired` ni le mode brut (`unit: "raw"`) sans le dire à Louis : ces codages ne sont pas vérifiés, et c'est lui qui lit le résultat dans UC Surface. Scènes, projets et presets de tranche : `list_console_presets`, puis `recall_console_preset` seulement quand Louis a nommé le fichier exact (un rappel de scène peut tout changer, master compris). Le serveur refuse un rappel de projet ou de scène sans `allow` contenant `master`, `unmute`, `phantom` et `patch`, et tout fichier absent de la liste de la console. `apply_change_set` suit les mêmes catégories : un démute demande `unmute`, le bus Main `master`.
+5. **Tout autre réglage** (n'importe quel paramètre d'UC Surface : `describe_parameters` pour trouver la clé) passe par `prepare_settings_plan` puis `apply_settings_plan`. Présenter à Louis chaque ligne (valeur actuelle → nouvelle, niveau de confiance) et les catégories sensibles du plan. Dans `allow`, ne mettre que les catégories que Louis a acceptées nommément : `master`, `unmute`, `phantom`, `busMaster`, `signalgen`, `monitoring`, `patch`, `modelSwitch`, `muteGroup`, `system`, `danger`, `forced` (paramètre déclaré en lecture seule ou interne), `unknown` (clé hors catalogue, en `raw` ou `text`). Aucune clé de la console n'est interdite : la seule barrière est la validation de Louis. Pour `danger` (réseau, extinction, utilisateurs, Bluetooth), prévenir Louis que la liaison ou la console peut être coupée et faire répéter l'accord. Ne pas activer `includeProbeRequired` ni le mode brut (`unit: "raw"`) sans le dire à Louis : ces codages ne sont pas vérifiés, et c'est lui qui lit le résultat dans UC Surface. Scènes, projets et presets de tranche : `list_console_presets`, puis `recall_console_preset` seulement quand Louis a nommé le fichier exact (un rappel de scène peut tout changer, master compris). Le serveur refuse un rappel de projet ou de scène sans `allow` contenant `master`, `unmute`, `phantom` et `patch`, et tout fichier absent de la liste de la console. `apply_change_set` suit les mêmes catégories : un démute demande `unmute`, le bus Main `master`. Un plan qui change de modèle de comp ou d'EQ code ses réglages pour le nouveau modèle, envoie le changement en premier et attend que la console le confirme. Un plan est refusé si l'une de ses clés a bougé sur la console depuis sa préparation : le refaire. Chaque écriture est notée dans `logs/ecritures.jsonl` (sur le PC, hors GitHub).
 6. **Jamais** le master, les limiteurs de sortie, le phantom ou un démute sans ordre explicite.
 7. **Larsen.** `get_feedback_alerts` donne la fréquence, la bande GEQ et les canaux suspects (le plus fort d'abord, à confirmer à l'oreille). Proposer la méthode du guide : coupure de 3 dB sur la seule bande du GEQ du retour concerné, trois ou quatre bandes au maximum, ou bien le placement. Écrire seulement après l'OK. L'analyseur USB démarre avec le serveur si `PRESONUS_USB_DEVICE` est configuré, et Windows affiche lui-même une notification à chaque larsen, sans toi. Si `get_feedback_alerts` montre que l'analyseur ne tourne pas ou ne reçoit rien, le dire.
 8. **Pas de temps réel.** Proposer entre deux morceaux, pas pendant un solo. Un larsen en cours et les gestes rapides restent à Louis : ta réaction prend plusieurs secondes.

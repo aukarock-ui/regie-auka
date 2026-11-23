@@ -8,5 +8,7 @@ skills/skills.zip
 .mcp.json
 .claude/settings.local.json
 _telechargements/
+# Journal des écritures sur la console (serveur studiolive) : reste sur le PC
+logs/
 # Réponses brutes des IA auditrices : non triées, ne pas publier
 audits/_brut/

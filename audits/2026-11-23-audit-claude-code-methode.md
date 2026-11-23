@@ -42,7 +42,17 @@ Code : dépôt git local créé (`abb34b3` base, `45acb52` corrections). Build, 
 - **C-02 corrigé.** Un rappel de projet ou de scène est refusé sans `allow` contenant `master`, `unmute`, `phantom` et `patch`, et tout fichier absent de `list_console_presets` est refusé, de même quand la liste est illisible. **Reste à confirmer console branchée :** que les noms renvoyés par la console sont bien ceux qu'on passe au rappel. Sinon, le contrôle refusera tout rappel. Ce défaut est sûr, mais il bloque. Pour un preset de tranche, je n'exige aucune catégorie de plus. Je ne sais pas s'il peut toucher le phantom ou le gain, et c'est à vérifier.
 - **C-07, nouveau, trouvé pendant l'audit approfondi, corrigé.** `prepare_mute_change_set` + `apply_change_set` démutait n'importe quel canal, Main compris, avec une simple note. `apply_change_set` applique maintenant les mêmes catégories que `apply_settings_plan`, et le dry-run les affiche. Renommage, Sub et assignation Aux restent des écritures normales, comme dans `prepare_settings_plan`.
 - **C-06 fait** (dépôt git). **M-01 fait** : `Regie-Auka/.claude/settings.json` (demande d'autorisation sur les 4 outils d'écriture), signalé dans `CLAUDE.md`.
-- **Toujours ouverts :** C-03 (changement de modèle dans un plan), C-04 (fraîcheur du plan), C-05 (journal d'écriture sur fichier), M-02 à M-06.
+- **C-03, C-04 et C-05 corrigés ensuite** (demande de Louis : « Règles ça » ; commits `400a82a` et `afc44bd`, **895 tests**) :
+  - C-03 : un plan qui change de modèle de comp ou d'EQ code les réglages de ce composant pour le nouveau modèle et envoie le changement en premier. Il attend ensuite que la console le montre avant d'envoyer le reste, et sinon il s'arrête. Le modèle ne s'écrit qu'en valeur brute non vérifiée (`includeProbeRequired`), donc un changement non inclus laisse le modèle actuel.
+  - C-04 : un plan est refusé si l'une de ses clés a bougé sur la console depuis sa préparation, et le dry-run le signale.
+  - C-05 : chaque écriture est ajoutée à `logs/ecritures.jsonl` (variable `PRESONUS_AUDIT_LOG` dans `.mcp.json`), hors GitHub. Les tests écrivent dans un dossier temporaire.
+- **Relecture par l'agent `relecteur`** (Sonnet, lecture seule) des corrections C-01 à C-07, corrigée dans `53651bc` (**899 tests**) :
+  - la confirmation d'un changement de modèle ne lisait que la clé d'écriture, alors que la console range la valeur sous `<clé>.value`. Le plan se serait arrêté à tort. Les deux formes sont maintenant lues ;
+  - une scène d'un autre projet passait le contrôle de C-02. Elle doit maintenant figurer dans le projet nommé ;
+  - les descriptions d'`apply_settings_plan` et d'`apply_change_set` ne disaient rien des nouveaux refus. Elles sont complétées ;
+  - le champ `kind` du journal pouvait être écrasé. C'est corrigé ;
+  - points mineurs laissés tels quels : les refus ne sont pas journalisés, et une clé hors catalogue est classée `unknown`, ce qui l'oblige à être autorisée explicitement (refus par défaut, donc sûr).
+- **Toujours ouverts :** M-02 à M-06.
 - Les tests utilisent une console simulée. Aucune de ces corrections n'a encore tourné sur la vraie 32SC.
 
 ## Ordre proposé

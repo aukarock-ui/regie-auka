@@ -21,6 +21,8 @@ Pour chaque point rapporté, retrouver dans le guide courant :
 - la ligne du registre 8.7 qu'il traite (et la séance : console seule, balance virtuelle, avec musiciens) ;
 - toutes les sections où la valeur ou le comportement apparaît (fiches de la Partie 3, bus de la Partie 4, scènes de la Partie 6, Partie 8, annexes).
 
+**Dans Claude Code à la régie**, où les agents de `.claude/agents/` existent : confier cette recherche à l'agent `verif-manuel`, en un seul appel pour toutes les observations, en lui demandant les lignes du guide et du registre où chaque valeur apparaît.
+
 Une observation qui ne correspond à aucune ligne est une découverte : la traiter à l'étape 2, cas 4.
 
 ## 2. Classer
@@ -41,6 +43,7 @@ Toutes les modifications passent par le skill `maj-guide-mixage` (script de remp
 
 - Les lignes closes sortent du registre ou passent en « fait », selon la convention du guide.
 - Une observation qui ouvre une nouvelle question crée une ligne, formulée comme un geste de trente secondes à deux minutes et rangée dans la bonne séance.
+- Mettre à jour la ligne « Registre 8.7 » de `TACHES.md`.
 - Proposer à Louis la prochaine séance la plus rentable : celle qui débloque le plus de valeurs « à tester ».
 
 ## 5. Compte rendu à Louis

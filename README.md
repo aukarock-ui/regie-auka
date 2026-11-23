@@ -19,6 +19,10 @@ Pour relire la méthode (humain ou IA) et laisser des notes, voir [`AUDIT.md`](A
 | `skills/` | Skills Claude de la méthode, un `SKILL.md` par dossier (copie de référence ; la version active est celle du compte claude.ai). L'archive `skills.zip` de secours n'est pas versionnée ici : elle est dans le dossier Drive `skills` |
 | `CLAUDE.md` | Consignes de l'assistant en régie |
 | `VERSION.md` | Version en service du guide, du contexte et du serveur console |
+| `TACHES.md` | Tableau de bord des chantiers : état et prochain geste |
+| `.claude/` | Permissions (autorisation avant toute écriture sur la console) et agents spécialisés `verif-manuel`, `dev-serveur`, `relecteur` |
+| `outils/catalogue.mjs` | Recherche dans le catalogue des paramètres UC Surface (nécessite le serveur compilé, hors dépôt) |
+| `audits/` | Tris des audits du guide, du code et de la méthode |
 
 **Hors de ce dépôt :**
 - **Manuels constructeur** : sur le Google Drive, dossier `Regie-Auka/manuels` (droits d'auteur).

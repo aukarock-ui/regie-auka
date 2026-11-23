@@ -31,6 +31,8 @@ Dans cet ordre :
    - La Key Source n'existe que sur les canaux d'entrée (6.8.3 / 6.8.4).
    - L'ordre par défaut du Fat Channel est Comp > EQ (6.8.4) ; le guide l'inverse volontairement sur les canaux.
    - Le FC-670 émule un Fairchild 670 à tube variable-mu, pas un opto.
+   - La 32SC n'a pas de touches User Function (mode d'emploi, p. 108) : la battue du tempo passe par la touche TAP et Tap Assign (9.1, p. 79).
+   - Logiciels du PC de régie : Universal Control 5.1.1 (la surface « UC Surface » y est intégrée sous Windows), pilote « StudioLive Series III ASIO », Ableton Live 11 Suite, FabFilter Pro-R version 1 (pas Pro-R 2).
 5. **Consigne de balayage.** Comparer chaque fiche de la Partie 3 et chaque bus de la Partie 4 : au tableau 2.4 ; à la règle du mode Auto (2.1) ; aux plages et crans de la Partie 2 ; au tableau 6.1 du manuel (quelle fonction existe sur quel type de canal) ; à la scène de style qui la modifie. Vérifier que chaque renvoi « voir X.Y » dit bien ce qui est annoncé.
 6. **Documents.** Le guide complet, puis l'addendum Fat Channel, le mode d'emploi StudioLive (parties 1 et 2), et si la place le permet le manuel UC Surface.
 
@@ -47,7 +49,7 @@ Pendant que l'auditeur tourne, faire sa propre relecture : ne pas attendre.
 
 ## 5. Trier les réponses
 
-Pour chaque remarque : retrouver la citation dans le guide courant, retrouver le passage du manuel invoqué, refaire les calculs. Classer en retenu, retenu en partie, rejeté. Compter et dire à Louis combien de remarques reposaient sur une lecture fausse ou une citation inventée : c'est ce qui permet de juger l'auditeur.
+**Dans Claude Code à la régie**, où les agents de `.claude/agents/` existent : envoyer toutes les remarques en un seul appel à l'agent `verif-manuel`, puis classer à partir de ses verdicts. Sinon : pour chaque remarque, retrouver la citation dans le guide courant, retrouver le passage du manuel invoqué, refaire les calculs. Classer en retenu, retenu en partie, rejeté. Compter et dire à Louis combien de remarques reposaient sur une lecture fausse ou une citation inventée : c'est ce qui permet de juger l'auditeur.
 
 Une remarque rejetée deux fois pour la même raison rejoint la liste « points déjà vérifiés » du prompt suivant.
 
@@ -58,6 +60,7 @@ Les remarques retenues s'appliquent avec le skill `maj-guide-mixage`. Compte ren
 ## Choix de l'auditeur
 
 - Une IA d'une autre famille que celle qui rédige le guide.
+- D'abord les voies gratuites déjà installées sur le PC de régie : le proxy Gemini local (`127.0.0.1:8000`, script `audits/outils/audit_gemini.py`, quatre passes A1, A2, B1, B2 ; quota quotidien remis à zéro vers 9 h, heure de Paris ; « aucune clé disponible » veut dire quota épuisé) et les modèles gratuits d'opencode (`opencode_ask`). Un audit payant seulement sur décision de Louis.
 - Les offres gratuites changent : vérifier par une recherche les conditions du moment (carte bancaire, limites par minute, taille de contexte) avant de recommander un service, et dire à Louis ce qui n'a pas pu être vérifié.
 - Un modèle rapide et gratuit se trompe plus souvent sur les tableaux et invente parfois des citations : la règle de preuve et la liste des points déjà vérifiés servent à limiter ces défauts, pas à les supprimer.
 - Constaté sur l'offre gratuite Gemini : les modèles Pro refusent les requêtes longues (erreur 429), seul le modèle Flash passe avec guide + manuels. Pistes gratuites sans carte déjà repérées, à revérifier avant usage : Mistral (offre gratuite), catalogue NVIDIA (modèles Kimi, DeepSeek). Les API DeepSeek et OpenAI demandent du crédit.
