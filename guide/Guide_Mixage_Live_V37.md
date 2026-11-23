@@ -1,4 +1,4 @@
-**GUIDE DE MIXAGE LIVE — V36**
+**GUIDE DE MIXAGE LIVE — V37**
 
 ÉDITION AUTONOMIE — PreSonus StudioLive 32SC + 16R
 
@@ -303,7 +303,7 @@ Matériel personnel, propriété pleine :
 
 - 2 × **Shure Beta58** — voix, **authenticité douteuse** (voir Annexe C)
 
-**Total : 8 microphones personnels.** Trois d’entre eux exigent une alimentation fantôme.
+**Total : 9 microphones personnels.** Trois d’entre eux exigent une alimentation fantôme.
 
 ## 0.3 Spécifications qui changent les réglages
 
@@ -401,7 +401,7 @@ Avec les 9 micros personnels et les 4 canaux de DI, sans aucun emprunt de micro 
 
 *Voix* — jusqu’à 4 canaux (2 Beta58 + 2 SM58).
 
-**Total : 13 canaux, un groupe de rock complet avec clavier stéréo couvert seul.** C’était l’objectif de la démarche d’achat, il est atteint.
+**Total : 13 canaux** (4 + 1 + 1 + 1 + 2 + 4 : la DI passive et la Palmer servent en même temps, voir 0.5), **un groupe de rock complet avec clavier stéréo couvert seul.** C’était l’objectif de la démarche d’achat, il est atteint.
 
 ## 0.8 Angles morts restants
 
@@ -2139,6 +2139,8 @@ Verrouiller le fader de A à Unity, **dans les deux variantes**. Le manuel situe
 | 3 | Tenue CPU dans la durée | Test de charge sur la durée réelle d’un set, pas une estimation |
 | 4 | Persistance du montage au rappel de Scène | **Soldé au manuel PreSonus (9.6.3).** Le « Départ numérique pré/post » et la « Source de départ numérique » sont dans le filtre de scène **Channel Strip** : rappelés avec la scène. La **Source d’entrée** (Analogique, Réseau, SD, USB) est un paramètre de **Projet**, comme le patch USB : une scène de style ne la change pas. Conséquence : enregistrer les scènes de style **avec** le départ du canal A réglé sur Pre, sinon le rappel le remet dans l’état où la scène a été stockée. |
 
+*Sur le PC de régie (retour PC du 23/11/2026) : Studio One est installé sous son nouveau nom **Fender Studio Pro 8**, et Ableton en **Live 11 Suite**.*
+
 **Studio One plutôt qu’Ableton, pour une raison précise.** Les deux fonctionnent via le même pilote Universal Control, mais Studio One est l’intégration éditeur native pour cette interface — plus de retours d’expérience et de support en cas de souci de driver un soir de date. **Aucun des deux n’a besoin de « Pipeline XT » ou « External Audio Effect »** — ces fonctions servent à intégrer du matériel physique avec une latence à mesurer ; ici la console EST l’interface audio, donc c’est du routage I/O standard, latence déjà gérée par le driver.
 
 *Studio One :* pilote choisi dans **Studio One > Options > Audio Setup** (Windows ; Studio One > Préférences sur Mac) ; entrées et sorties de la chanson dans **Song > Song Setup**, onglet **Audio I/O Setup**. *Chemins relevés sur une source tierce, pas dans un manuel au projet — à confirmer à l’écran.* Canal Audio Input mappé sur la paire USB du départ. Plugin sur ce canal ou un bus FX dédié. Bus de sortie routé vers la paire USB du retour. **Bouton Monitor activé** sur le canal d’entrée pour un passage continu, pas juste en lecture.
@@ -2159,7 +2161,7 @@ Verrouiller le fader de A à Unity, **dans les deux variantes**. Le manuel situe
 
 **Écarté pour cet usage, et pourquoi :** Oeksound Soothe2 a une latence fixe d’environ 40 ms — inutilisable en insert live, ça décale la voix façade du reste du groupe et crée le même comb filtering que documenté sur les retards non maîtrisés (7.7). Soothe3 introduit un mode Low Latency (quasi nul) explicitement pensé live — à garder en tête pour un futur problème de résonance large spectre (cymbale stridente, ampli agressif), pas pour du simple de-essing aujourd’hui.
 
-**Coloration/saturation — utile en complément, jamais prioritaire.** Le Fat Channel couvre déjà bien ce terrain (Tube CB, VT-1, Tube EQ). Si un besoin réel persiste : **FabFilter Pro-R2** (reverb, zero-latency confirmé — la confusion courante avec la latence linéaire-phase de Pro-Q ne s’applique pas à Pro-R), **Valhalla VintageVerb/Room/Delay** (légers, conçus pour tourner par dizaines d’instances), **Soundtoys SuperPlate**, **Decapitator** (saturation légère) ou **FabFilter Saturn2** (plus riche ; **sur une piste parallèle uniquement**, 2× d’oversampling au maximum — sur la piste de nettoyage, la règle « ni look-ahead ni oversampling » ne souffre pas d’exception). Écarter **LiquidSonics Seventh Heaven Professional** sur ce PC précis : specs officielles 8 cœurs physiques + 32 Go recommandés, très au-dessus d’un quad-core sans Hyper-Threading — basculer sur la version Standard ou sur Valhalla si une reverb premium est vraiment nécessaire.
+**Coloration/saturation — utile en complément, jamais prioritaire.** Le Fat Channel couvre déjà bien ce terrain (Tube CB, VT-1, Tube EQ). Si un besoin réel persiste : **FabFilter Pro-R2** (reverb, zero-latency confirmé — la confusion courante avec la latence linéaire-phase de Pro-Q ne s’applique pas à Pro-R), **Valhalla VintageVerb/Room/Delay** (légers, conçus pour tourner par dizaines d’instances), **Soundtoys SuperPlate**, **Decapitator** (saturation légère) ou **FabFilter Saturn2** (plus riche ; **sur une piste parallèle uniquement**, 2× d’oversampling au maximum — sur la piste de nettoyage, la règle « ni look-ahead ni oversampling » ne souffre pas d’exception). *Installé au 23/11/2026 (retour PC) : Pro-R en version 1 (pas Pro-R 2, dont la latence nulle est la seule documentée ici — vérifier celle de la version 1 au clap-test), Saturn 2, Valhalla Supermassive et Space Modulator ; ni la suite Valhalla, ni SuperPlate, ni Decapitator.* Écarter **LiquidSonics Seventh Heaven Professional** sur ce PC précis : specs officielles 8 cœurs physiques + 32 Go recommandés, très au-dessus d’un quad-core sans Hyper-Threading — basculer sur la version Standard ou sur Valhalla si une reverb premium est vraiment nécessaire.
 
 *Contrainte d’exploitation à ne pas oublier :* la voie C impose un ordinateur allumé et fonctionnel pendant tout le set — un point de défaillance de plus, au même titre que le lien AVB (7.9).
 
@@ -2181,7 +2183,7 @@ Ce qui suit consigne les choix arrêtés dans cette discussion. **Aucune de ces 
 
 *En parallèle :*
 
-- **Decapitator** (Soundtoys) — choix de Louis, pour le grain. Toujours en parallèle, jamais en série sur la voix.
+- **Decapitator** (Soundtoys) — choix de Louis, pour le grain. Toujours en parallèle, jamais en série sur la voix. **⚠️ Absent du PC de régie au 23/11/2026** (retour PC) : à installer avant tout essai.
 
 - **Reverb : Exponential Audio R2** — installée et appréciée. Les presets s’y cherchent **par mots-clés** dans le navigateur ; l’inventaire exact des presets n’est pas documenté ici, donc aucun nom de preset n’est prescrit. R2 possède un module **Gate** intégré, utile pour couper la queue sans ajouter un plugin.
 
@@ -2717,7 +2719,7 @@ Chaque patch distingue le **parc personnel** (garanti) de l’**emprunt** (à co
 
 **Groupe rock / punk — 4 musiciens, micros et DI 100 % personnels**
 
-Canal 1 kick (BD 500 Beta, 48 V) · Canal 2 caisse claire (i5 sur D-Vice) · Canaux 3-4 overheads (Lewitt, 48 V, couplés en stéréo) · Canal 5 basse (DI active) · Canal 6 guitare (SM57) · Canaux 7-8 voix (Beta58 ×2) · Canaux 9-10 chœurs (SM58 ×2).
+Canal 1 kick (BD 500 Beta, 48 V) · Canal 2 caisse claire (i5 sur D-Vice) · Canaux 3-4 overheads (Lewitt, 48 V, couplés en stéréo) · Canal 5 basse (DI active) · Canal 6 guitare (SM57) · Canaux 7-8 voix (Beta58 ×2) · Canaux 9-10 chœurs (SM58 ×2). *Quatre micros voix pour quatre musiciens : un par musicien quand tout le monde chante ; sinon, les canaux en trop restent libres.*
 
 *10 canaux, uniquement des micros et DI personnels, un seul pied pour toute la batterie.* La guitare et les quatre voix demandent cinq pieds de plus, à trouver sur place (0.8). C’est la configuration de référence.
 
@@ -2799,7 +2801,17 @@ Ce qui reste en place, ce qui bouge, ce qui se démonte. Sur un plateau serré, 
 
 *Section de traçabilité. Les valeurs « avant » sont périmées et ne doivent jamais être reprises comme valeurs de travail : seul le corps du guide fait foi. Une recherche textuelle peut tomber ici avant d’atteindre la prescription courante : la protection est la consigne du bloc assistant, pas le texte.*
 
-﻿### CE QUI CHANGE PAR RAPPORT À LA V35
+### CE QUI CHANGE PAR RAPPORT À LA V36
+
+Source : second audit externe du 23 novembre 2026 (« Audit approfondi », arbre 8889f9b, sans manuels), trié dans `audits/2026-11-23-audit-approfondi-tri.md`. Deux des erreurs relevées venaient de la V36 elle-même.
+
+- **0.2.** « Total : 8 microphones personnels » → **9**. La V36 avait corrigé 0.7 sans propager la correction en 0.2.
+- **0.7.** Total de 13 canaux inchangé, calcul affiché (4 + 1 + 1 + 1 + 2 + 4). L’audit le donnait à 12 en supposant que la DI passive et la Palmer ne servent pas ensemble, alors que 0.5 prévoit justement les deux à la fois.
+- **Annexe B, rock/punk.** Une phrase précise que les quatre micros voix vont un par musicien, quand tout le monde chante.
+- **7.10.** Logiciels réellement installés (retour PC du 23/11) : Studio One installé sous le nom Fender Studio Pro 8, Live 11 Suite, Pro-R en version 1, Decapitator, SuperPlate et la suite Valhalla absents. Decapitator reste le choix de Louis, à installer avant tout essai.
+- **Historique.** Le titre « CE QUI CHANGE PAR RAPPORT À LA V35 » ne s’affichait pas comme titre : un caractère invisible (BOM) était collé devant. Corrigé.
+
+### CE QUI CHANGE PAR RAPPORT À LA V35
 
 Sources : audit externe du 23 novembre 2026 (relecture statique du dépôt GitHub, sans manuels), trié point par point dans `audits/2026-11-23-audit-externe-tri.md` ; relecture de Claude le même jour, à la place de l’audit Gemini (quota gratuit épuisé). Chaque point a été vérifié dans le guide, et au manuel quand il en invoque un.
 

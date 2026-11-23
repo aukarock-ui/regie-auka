@@ -54,7 +54,7 @@ Dossiers du Drive (identifiants pour le connecteur) :
 
 ## Où sont les choses dans ce dossier
 
-- `guide/Guide_Mixage_Live_V36.md` : **la référence unique** (presets, bus, gain staging, scènes de style, correspondances multi-consoles, registre des vérifications 8.7). Le consulter, jamais le reconstituer de mémoire. La section `HISTORIQUE — NE PAS CITER` contient volontairement des valeurs périmées.
+- `guide/Guide_Mixage_Live_V37.md` : **la référence unique** (presets, bus, gain staging, scènes de style, correspondances multi-consoles, registre des vérifications 8.7). Le consulter, jamais le reconstituer de mémoire. La section `HISTORIQUE — NE PAS CITER` contient volontairement des valeurs périmées.
 - `contexte/` : faits utiles qui ne sont pas tous dans le guide (parc matériel, système de la grande scène, comportements console vérifiés). En cas de désaccord avec le guide, le guide prime et l'écart est signalé à Louis.
 - `manuels/` : documentation constructeur. Les `.txt` sont des extractions pour la recherche ; l'extraction casse les tableaux, donc pour un tableau décisif, ouvrir la page du PDF.
 - `skills/` : copie de secours des skills de la méthode.

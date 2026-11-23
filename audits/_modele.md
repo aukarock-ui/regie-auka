@@ -1,6 +1,6 @@
 # Audit du AAAA-MM-JJ — <nom du relecteur ou modèle d'IA>
 
-Version relue : <commit ou date du dépôt> (guide V36)
+Version relue : <commit ou date du dépôt> (guide V37)
 Périmètre : <tout le guide / Parties 0–4 / Parties 5–8 / scènes par style / approches par style…>
 
 ## Remarques
