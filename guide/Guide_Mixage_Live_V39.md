@@ -1,4 +1,4 @@
-**GUIDE DE MIXAGE LIVE — V38**
+**GUIDE DE MIXAGE LIVE — V39**
 
 ÉDITION AUTONOMIE — PreSonus StudioLive 32SC + 16R
 
@@ -455,7 +455,7 @@ Ce niveau se juge à l’esthétique propre de chaque style couvert — agressif
 
 *Pourquoi Compresseur → EQ sur les bus : trois raisons distinctes, pas une règle plate.* Sur **Drums et Instru**, le compresseur doit réagir au mélange brut ; si l’EQ passait avant, un boost sur une bande changerait le niveau que le compresseur voit sur cette bande précise, et on perdrait le contrôle de ce qui déclenche réellement la compression. Sur le **Bus Voix**, l’effet serait carrément pervers : booster les 4,8 kHz agressifs *avant* le Tube CB ferait que cette bande, désormais plus forte, déclencherait *plus* de réduction de gain sur elle-même — on annulerait une partie du boost qu’on vient de faire. Sur le **Bus Parallel**, l’EQ sert explicitement à remettre en forme *après* l’écrasement : l’ordre inverse n’aurait aucun sens. Les quatre bus tombent sur le même ordre, mais pour trois raisons différentes selon leur fonction.
 
-**Sur le Master : GLUE FINALE.** Everest C100A à 1–2 dB maximum, EQ à ±1–2 dB maximum. Si le compresseur Master travaille plus de 2–3 dB, le problème vient des bus.
+**Sur le Master : GLUE FINALE.** Everest C100A à 1–2 dB maximum, EQ en geste léger, jamais une correction (Passive : graduations de 0 à 10 sans unité, 5.1). Si le compresseur Master travaille plus de 2–3 dB, le problème vient des bus.
 
 ## 1.2 Gain Staging global
 
@@ -513,7 +513,7 @@ Les canaux s’assignent uniquement à leur sous-groupe. Seules les sources lign
 
 ## 1.4 Stagebox 16R
 
-Liaison CAT5e ou CAT6 entre les ports AVB. *La latence propre du lien AVB n’est pas chiffrée par le manuel, qui ne donne que la latence totale en routage local (1,9 ms, entrée analogique vers sortie analogique) ; le « moins de 1 ms » des versions précédentes n’avait pas de source.* Les 16 préamplis apparaissent comme canaux supplémentaires, gain et fantôme pilotables depuis la surface ou UC Surface. FlexMix 1 à 6 routés vers les sorties analogiques mono de la 16R.
+Liaison CAT5e ou CAT6 entre les ports AVB. *La latence propre du lien AVB n’est pas chiffrée par le manuel, qui ne donne que la latence totale en routage local (1,9 ms, entrée analogique vers sortie analogique) ; le « moins de 1 ms » des versions précédentes n’avait pas de source.* Les 16 préamplis apparaissent comme canaux supplémentaires, gain et fantôme pilotables depuis la surface ou UC Surface. **Constaté le 24 novembre 2026, 16R en mode Stagebox et toutes les entrées branchées sur elle :** les canaux 1 à 15 de la 32SC ont été passés en source **Network** (manuel 6.10.1 : le « canal correspondant de l’entrée réseau AVB ») et reçoit l’entrée AVB de même numéro par le patch du canal (manuel 12.3.1) — **vérifier ce patch canal par canal** : ce jour-là, un canal recevait l’entrée voisine. Le gain et le 48 V se règlent alors **sur le canal de la 32SC**, et la 16R les suit (relu sur la 16R). L’appareil qui pilote doit avoir la permission **Préamplis** dans les permissions de l’unité de la 32SC (manuel 9.4.2 : elle « active/désactive la possibilité de contrôler à distance les fonctions de préampli ») . Gain et 48 V ont été relus sur la 16R après l’octroi des permissions FOH et Préamplis au serveur, fait en même temps que la correction de son identifiant : la cause exacte du refus antérieur n’est pas isolée. Écrire directement sur la 16R a été refusé ce même jour (verrou de préamplis actif sur la 16R en mode Stagebox). *Le mode Stagebox des racks est décrit dans un addenda PreSonus absent du dossier `manuels/` (manuel 12.3) : ces constats n’en sont pas tirés.* FlexMix 1 à 6 routés vers les sorties analogiques mono de la 16R.
 
 **⚠️ Les entrées/sorties réelles de la 32SC — plus larges que ce que le guide supposait.** Vérification faite dans le manuel (3.1.4) :
 
@@ -579,9 +579,9 @@ Le compresseur invisible : il lisse sans qu’on l’entende travailler. Moins d
 
 **Class-A FET Compressor** *(inclus d’origine)*
 
-FET agressif et percutant. Commandes : Input Gain, Output Gain, Attack, Release, Ratio (4 / 8 / 12 / 20 / All), Key Filter. *Le manuel (6.5.3) n’affiche que les valeurs par défaut — Attack 0,10 ms, Release 250 ms — sans chiffrer les plages.* Les plages « 0,1–60 ms » et « 250 ms–3 s » des versions précédentes n’avaient pas de source. **À relever sur la console** : si 250 ms est la butée basse du Release, le Release de 150 ms prescrit sur la caisse claire (3.1) n’existe pas, et la valeur la plus courte disponible s’impose (registre 8.7). **La même réserve vaut pour toutes les valeurs d’Attack de ce modèle dans le guide** (3 ms sur la caisse claire et la trompette, 5 ms sur la guitare rythmique et la variante hip-hop) : si la plage réelle ne les contient pas, appliquer la règle de repli du Bloc assistant — valeur disponible la plus proche, et la plus lente si deux valeurs encadrent — et la consigner.
+FET agressif et percutant. Commandes : Input Gain, Output Gain, Attack, Release, Ratio (4 / 8 / 12 / 20 / All), Key Filter. *Le manuel (6.5.3) n’affiche que les valeurs par défaut — Attack 0,10 ms, Release 250 ms.* **Plages relevées dans le catalogue UC Surface 5.1 (les définitions de paramètres que la console charge) : Attack de 0,021 à 0,8 ms, Release de 50 ms à 1,1 s.** Conséquence : aucune Attack de plusieurs millisecondes n’existe sur ce modèle. Les « 3 ms » (caisse claire, trompette) et « 5 ms » (guitare rythmique, variante hip-hop) des versions précédentes étaient hors plage ; par la règle de repli du Bloc assistant, ils deviennent **0,8 ms, l’attaque la plus lente du modèle** (V39). Les Release de 150 et 250 ms sont dans la plage. Si l’oreille réclame une attaque plus lente pour laisser passer le transitoire, c’est un autre modèle qu’il faut — le Standard Compressor va de 0,2 à 150 ms (même catalogue) — à valider à l’oreille.
 
-*⚠️ Pas de commande Threshold sur ce modèle. C’est l’Input Gain qui pilote seul le déclenchement : augmenter l’Input Gain revient à baisser le seuil effectif. Régler l’Input Gain en surveillant la réduction de gain, puis compenser à l’Output Gain.*
+*⚠️ Pas de commande Threshold sur ce modèle. C’est l’Input Gain qui pilote seul le déclenchement : augmenter l’Input Gain revient à baisser le seuil effectif. Régler l’Input Gain en surveillant la réduction de gain, puis compenser à l’Output Gain.* **Input et Output vont de −56 à 0 dB** (catalogue UC Surface 5.1) : pas de gain de rattrapage au-dessus de 0 dB, le niveau perdu se rattrape au fader. *Défauts : le catalogue donne Input −43 dB et Output 0 dB, le manuel (6.5.3) −24 dB pour les deux — à lire à l’écran (8.7).*
 
 À 20:1 ou en position All, il devient un limiteur dur. Son mordant est exactement ce qu’on cherche sur une caisse claire punk ou une guitare rythmique en palm mute.
 
@@ -685,13 +685,13 @@ C’est l’outil le plus sous-utilisé du bloc Gate, et le manuel PreSonus en d
 
 **Standard EQ** *(inclus)* — Entièrement paramétrique, transparent. **4 bandes sur les canaux (Low, L-Mid, H-Mid, High), 6 bandes quand un bus est sélectionné** — confirmé par le manuel — plus le HPF. Chaque bande a gain, fréquence et Q réglables. **Les bandes Low et High passent en plateau** (boutons Low Shelf et High Shelf, manuel UC Surface 3.3, points 8 et 10 ; le mode d’emploi de la console ne les mentionne pas — les activer depuis UC Surface). En plateau, la fréquence règle le point du plateau (même source) ; **ce que fait alors le Q n’est pas documenté** — les bandes médium restent des cloches à Q réglable. Le couteau suisse pour la chirurgie sur canal.
 
-**Passive Program EQ** *(inclus)* — Lampe passif, Low et High avec Boost et Atténuation séparés et interactifs. Courbes toujours musicales même poussées. Poste : Master.
+**Passive Program EQ** *(inclus)* — Lampe passif, Low et High avec Boost et Atténuation séparés et interactifs, **gradués de 0 à 10 sans unité** (2.7). Courbes toujours musicales même poussées. Poste : Master.
 
 **Vintage 1970s EQ** *(inclus)* — 4 bandes (manuel 6.6.3). **Low en plateau, fréquence réglable (60 Hz par défaut)** ; **L-Mid et H-Mid à fréquence réglable** (700 Hz et 4,8 kHz par défaut) ; **High : gain seul**, sa fréquence n’est pas réglable et le manuel ne la chiffre pas. *Correction V33 :* les versions précédentes décrivaient quatre fréquences fixes, dont un Low « vers 200 Hz » et un High « vers 12 kHz » — aucune de ces deux valeurs n’est dans le manuel. **Conséquence sur le Bus Voix :** le Low reste à 60 Hz tant qu’on ne le déplace pas ; un +2 dB à 60 Hz sur des voix ne remonte que du bruit de scène. **Régler Low Freq vers 200 Hz avant de toucher son gain.** Le +3 dB sur le H-Mid donne cette présence agressive caractéristique. Poste : Bus Voix sur les styles agressifs.
 
-**Alpine EQ-550** *(Classic Studio Bundle)* — 3 bandes qui se recouvrent, **7 points de fréquence fixes par bande, cinq crans de boost ou d’atténuation**, Peak ou Shelf commutable sur les bandes haute et basse, plus un **filtre passe-bande commutable de 50 Hz à 15 kHz**. Les fréquences fixes forcent des choix musicaux plutôt que techniques. Poste : Bus Instru, et Bus Voix sur les styles chauds.
+**Alpine EQ-550** *(Classic Studio Bundle)* — 3 bandes qui se recouvrent, **fréquences fixes et gain par crans** (liste ci-dessous), Peak ou Shelf commutable sur les bandes haute et basse, plus un **filtre passe-bande commutable de 50 Hz à 15 kHz**. Les fréquences fixes forcent des choix musicaux plutôt que techniques. Poste : Bus Instru, et Bus Voix sur les styles chauds.
 
-*⚠️ La V14 annonçait « paliers de ±2 dB ». L’addendum ne dit pas ça : il parle de cinq crans par bande, sans en chiffrer la valeur en décibels. Régler à l’oreille en comptant les crans, pas en supposant une valeur.*
+*⚠️ Crans réels (V39).* L’addendum (1.2) et le manuel (6.8.5) annoncent « sept points de fréquence fixe, chacun avec cinq paliers ». Le catalogue UC Surface 5.1, qui décrit ce que la console charge, compte **cinq fréquences par bande, et non sept** — Low 50 / 100 / 200 / 300 / 400 Hz, Mid 0,4 / 0,8 / 1,5 / 3 / 5 kHz, High 5 / 7 / 10 / 12,5 / 15 kHz. Les paliers, eux, concordent : cinq de boost, cinq de coupe et le 0, soit **onze crans de gain**, −12 / −9 / −6 / −4 / −2 / 0 / +2 / +4 / +6 / +9 / +12 dB. Les crans 100 Hz, 1,5 kHz et 7 kHz ont été écrits et relus sur la console le 24/11. Une valeur du guide absente des crans prend le cran le plus proche ; entre deux crans de gain, le plus bas (règle de repli du Bloc assistant).
 
 **Baxandall EQ** *(Modern Classics Bundle)* — Plateaux glissants très larges, Low Cut et High Cut à 12 dB/oct. Commandes : Low Cut (12–54 Hz), Low Shelf (74–361 Hz), High Shelf (1,6–18 kHz), High Cut (≈7,5–70 kHz).
 
@@ -701,13 +701,13 @@ C’est l’outil le plus sous-utilisé du bloc Gate, et le manuel PreSonus en d
 
 *Poste attribué :* **canal Kick.** Ses plateaux larges asseoient les graves du kick sans créer de résonance, là où le Standard EQ demande de la chirurgie. Le Low Cut sert de HPF musical. C’est le seul endroit du guide où il est utilisé par défaut — ailleurs, en retouche exceptionnelle sur le Master.
 
-**RC-500 EQ** *(gratuit)* — 3 bandes semi-paramétriques, Peak/Shelf commutable, Q optimisé par bande. Propre, sans artefact. Poste : Bus Parallel, pour remettre en forme après l’écrasement du Comp 160.
+**RC-500 EQ** *(gratuit)* — 3 bandes semi-paramétriques — Low 20–600 Hz, Mid 400–7 500 Hz, High 2–28 kHz, gains ±18,5 dB continus (catalogue UC Surface 5.1) —, Peak/Shelf commutable sur Low et High (Q fixe de 0,6 en Peak, addendum 4.3). Propre, sans artefact. Poste : Bus Parallel, pour remettre en forme après l’écrasement du Comp 160.
 
-**Solar 69 EQ** *(Classic Studio Bundle)* — Britannique classique. Low (fréquence + gain), Mid (fréquence + gain) avec mode Peak/Trough, High (fréquence + gain), **plus un inverseur de polarité intégré** et le bypass.
+**Solar 69 EQ** *(Classic Studio Bundle)* — Britannique classique. Low (fréquence + gain), Mid (fréquence + gain) avec mode Peak/Trough, High (gain ; pour la fréquence, voir l’avertissement ci-dessous), **plus un inverseur de polarité intégré** et le bypass.
 
-⚠️ **Pas de Level Adjust sur ce modèle** — l’inscription visible sur le panneau est le libellé du High Band Gain, pas une commande séparée. Et **la bande High est à fréquence réglable** — elle n’est pas fixée à 10 kHz.
+⚠️ **L’addendum et la console ne disent pas la même chose (V39).** L’addendum (4.4) décrit une fréquence réglable pour la bande High et ne liste pas de Level Adjust. Le catalogue UC Surface 5.1, qui décrit ce que la console charge, donne l’inverse : **pas de commande de fréquence pour la bande High, seulement un gain nommé « 10kHz Gain »** (crans de 2 dB, de −10 à +10 dB), et un **Level Adjust** (−20 à +10 dB). Le « 10kHz Gain » a été écrit et relu sur la console le 24/11. Tant que l’écran n’a pas tranché (registre 8.7), **la bande High est traitée comme fixe à 10 kHz, réglable par crans de 2 dB**. Bande Mid : crans 0,7 / 1 / 1,4 / 2 / 2,8 / 3,5 / 4,5 / 6 kHz (même catalogue) — **elle ne descend pas sous 700 Hz**.
 
-Le mode Trough transforme le Mid en notch précis pour éliminer une résonance. La bande High réglable permet de viser la zone de shimmer propre au kit du jour, généralement entre 8 et 10 kHz. Poste : Bus Drums.
+Le mode Trough transforme le Mid en notch précis pour éliminer une résonance. La bande High agit à 10 kHz (fréquence fixe d’après la console, avertissement ci-dessus), dans la zone de shimmer du kit. Poste : Bus Drums.
 
 **Tube EQ** *(Vintage Channel Strips Bundle)* — Passif lampe, **médiums uniquement — et c’est littéralement vrai** : lecture directe du panneau, les trois bandes sont graduées en kHz et couvrent **200 Hz à 5 kHz**, pas un hertz en dehors. Sa limitation est sa force : impossible de se tromper dans les graves ou les aigus, ils sont hors de portée.
 
@@ -797,7 +797,7 @@ Quatre erreurs, une lacune, une divergence de nommage et une contradiction inter
 
 ## 2.7 Plages de réglage chiffrées
 
-Les butées réelles, telles que le manuel les documente. Utile pour savoir quand une valeur du guide est proche d’une limite physique.
+Les butées réelles, telles que le manuel les documente, complétées en V39 par le catalogue UC Surface 5.1 (les définitions de paramètres que la console charge ; à confirmer à l’écran, registre 8.7). Utile pour savoir quand une valeur du guide est proche d’une limite physique.
 
 | **Paramètre** | **Plage** | **Remarque** |
 | --- | --- | --- |
@@ -817,8 +817,13 @@ Les butées réelles, telles que le manuel les documente. Utile pour savoir quan
 | Tube CB mode Fixed | Attack 1 ms / Release 50 ms | Non réglables en Fixed |
 | Tube CB mode Manual | boutons continus Fast ↔ Slow | Temps non chiffrés par l’addendum — convention et méthode en 2.1 |
 | Everest C100A | trois positions : Fast · Medium · Slow | Temps non chiffrés par l’addendum |
-| Brit Comp Attack | crans 0,1 · 0,3 · 1 · 3 · 10 · 30 ms | Lus sur le panneau (2.8) ; crans du Release à relever |
-| Class-A FET Attack / Release | défauts 0,10 ms / 250 ms | Plages non chiffrées par le manuel — à relever |
+| Brit Comp | Attack : crans 0,1 · 0,3 · 1 · 3 · 10 · 30 ms · Release : crans 0,1 · 0,3 · 0,6 · 1,2 s · Auto · Ratio 2:1 · 4:1 · 10:1 | Attack lu sur le panneau (2.8) ; Release et Ratio : catalogue UC Surface 5.1 |
+| Class-A FET Attack / Release | Attack 0,021–0,8 ms · Release 50 ms–1,1 s · Input et Output −56 à 0 dB | catalogue UC Surface 5.1 ; défauts 0,10 ms / 250 ms (manuel 6.5.3) |
+| Standard Comp Attack / Release | Attack 0,2–150 ms · Release 2,5–900 ms | catalogue UC Surface 5.1 |
+| Alpine EQ-550 | Low 50 · 100 · 200 · 300 · 400 Hz · Mid 0,4 · 0,8 · 1,5 · 3 · 5 kHz · High 5 · 7 · 10 · 12,5 · 15 kHz · gain −12 · −9 · −6 · −4 · −2 · 0 · +2 · +4 · +6 · +9 · +12 dB | catalogue UC Surface 5.1 — sept fréquences selon l’addendum (2.3) ; paliers concordants |
+| Solar 69 EQ | Mid 0,7 · 1 · 1,4 · 2 · 2,8 · 3,5 · 4,5 · 6 kHz · High : gain seul « 10kHz Gain », crans de 2 dB de −10 à +10 dB · Level Adjust −20 à +10 dB | catalogue UC Surface 5.1 — contredit l’addendum (2.3) |
+| RC-500 EQ | Low 20–600 Hz · Mid 400–7 500 Hz · High 2–28 kHz · gains ±18,5 dB continus | catalogue UC Surface 5.1 ; Q fixe 0,6 en Peak (addendum 4.3) |
+| Passive Program EQ | Boost et Atten gradués 0 à 10, sans unité · Low Freq 30 · 60 · 100 Hz · High Freq 3 · 4 · 5 · 8 · 10 · 12 · 16 kHz · Atten Select 5 · 10 · 20 kHz | catalogue UC Surface 5.1 (un premier cran de Low Freq y est libellé « 20kHz », à lire à l’écran) ; correspondance graduation → dB non documentée |
 | Effets : Reflection, Size, Diffusion, Spread, Width | non chiffrés | Convention et méthode en 5.1bis — à relever |
 
 ## 2.8 Les machines derrière les émulations — et les gestes qui vont avec
@@ -855,7 +860,7 @@ PreSonus ne nomme jamais le matériel copié : marques déposées. Mais les comm
 
 - **Class-A FET, position « All » = le « All Buttons In » du 1176.** Sur le vrai 1176, enfoncer tous les boutons de ratio ensemble donne un ratio instable, une attaque et un relâchement qui se déforment, un son explosif et saturé — surnommé *British Mode*. Usage universellement documenté : **jamais en direct sur un canal, uniquement en parallèle.** Ton Bus Parallel (FM 15) est exactement l’endroit pour ça, et il n’a jamais été testé avec autre chose que le Comp 160. À essayer.
 
-- **Passive Program EQ : le tour de passe-passe Pultec dans les graves.** Booster et atténuer la *même* fréquence simultanément. Sur ce circuit passif, les deux ne s’annulent pas : le boost est un pic large, l’atténuation un plateau qui démarre juste en dessous. Résultat : un renflement propre à la fréquence visée et un nettoyage du sub en dessous, d’un seul geste. Le panneau PreSonus partage le même sélecteur de fréquence entre Low Boost et Low Atten, exactement comme le vrai appareil — le geste est reproductible à l’identique. **Au Master, à tester : Low Boost +1 à +2 dB ET Low Atten +1 à +2 dB, tous les deux à 60 Hz.**
+- **Passive Program EQ : le tour de passe-passe Pultec dans les graves.** Booster et atténuer la *même* fréquence simultanément. Sur ce circuit passif, les deux ne s’annulent pas : le boost est un pic large, l’atténuation un plateau qui démarre juste en dessous. Résultat : un renflement propre à la fréquence visée et un nettoyage du sub en dessous, d’un seul geste. Le panneau PreSonus partage le même sélecteur de fréquence entre Low Boost et Low Atten, exactement comme le vrai appareil — le geste est reproductible à l’identique. **Au Master, à tester : Low Boost ET Low Atten légers, tous les deux à 60 Hz** (graduations de 0 à 10 sans unité, 5.1).
 
 - **Alpine EQ-550 : le Q proportionnel de l’API.** Le Q se resserre automatiquement quand le gain monte. Un petit boost (2–4 dB) reste large et musical ; un gros boost (9–12 dB) devient chirurgical tout seul, sans rien régler. Conséquence pratique : **on peut pousser plus fort qu’avec un EQ classique** sur un problème ponctuel, la bande se resserre d’elle-même. Deux essais documentés et directement transposables : plateau aigu sur les overheads, et boost vers 1,5 kHz pour le crack de caisse claire.
 
@@ -956,9 +961,9 @@ Poser le kick en premier (il faut accéder à l’intérieur de la caisse avant 
 
 *Gate/Expander.* Threshold vers -30 dB si la repisse de charley gêne, **Range -∞** (silence net souhaité entre les coups, la caisse claire doit claquer), Attack minimum, Release 100 ms. En punk et métal, souvent inutile : ça joue en continu. **Attention en configuration 4 micros** : un gate serré sur la caisse claire coupe aussi de l’ambiance utile qu’on ne retrouve que dans les overheads.
 
-*Compresseur.* Class-A FET. **Pas de Threshold sur ce modèle** : monter l’Input Gain depuis sa valeur par défaut (-24 dB, affichée au manuel 6.5.3) jusqu’à lire 4–6 dB de réduction au mètre. Aucune valeur cible n’est documentée : c’est le mètre qui décide, pas le chiffre. Ratio 4:1, Attack 3 ms, Release 150 ms *(les deux sous réserve des plages réelles — voir 2.1, Class-A FET)*, compenser à l’Output Gain.
+*Compresseur.* Class-A FET. **Pas de Threshold sur ce modèle** : monter l’Input Gain depuis sa valeur par défaut (-24 dB, affichée au manuel 6.5.3) jusqu’à lire 4–6 dB de réduction au mètre. Aucune valeur cible n’est documentée : c’est le mètre qui décide, pas le chiffre. Ratio 4:1, **Attack 0,8 ms** (la plus lente du modèle ; les 3 ms des versions précédentes sont hors plage, 2.1), Release 150 ms, compenser à l’Output Gain.
 
-*Variante hip-hop ou reggae.* Même ratio que la base (4:1 est le plus bas de ce modèle, 2.1) ; ce qui change : Attack 5 ms et réduction limitée à 2–3 dB, pour un rendu plus naturel.
+*Variante hip-hop ou reggae.* Même ratio que la base (4:1 est le plus bas de ce modèle, 2.1) ; ce qui change : la réduction, limitée à 2–3 dB, pour un rendu plus naturel. L’Attack reste à 0,8 ms : les 5 ms des versions précédentes sont hors plage (2.1).
 
 *EQ — recalée sur la courbe réelle de l’i5.* La courbe constructeur de l’i5 montre deux bosses naturelles : **+5 dB vers 150 Hz** (bass hump) et **+9 dB vers 5,5 kHz** (présence, plateau large de 3 à 8 kHz). Ce n’est pas un micro plat comme un SM57 — il colore déjà dans les deux zones où on cherche justement à booster.
 
@@ -1188,7 +1193,7 @@ Le BD 500 Beta reste le micro principal (3.1). Le PGA52 s’ajoute quand le prê
 
 *Compresseur — lead.* Standard Compressor léger. Threshold -15 dB, Ratio 3:1, **Attack 5 ms, Release 150 ms en manuel — pas en Auto** (le mode Auto imposerait 10 ms d’attaque et annulerait le réglage). Réduction 2–3 dB : l’ampli compresse déjà naturellement.
 
-*Compresseur — rythmique.* Class-A FET. **Pas de Threshold** : Input Gain monté depuis sa valeur par défaut (-24 dB, manuel 6.5.3) jusqu’à lire 3–4 dB de réduction au mètre, Ratio 4:1, Attack 5 ms, Release 250 ms *(sous réserve des plages réelles, 2.1)*. Le FET réagit vite et ajoute le mordant qu’on cherche sur les palm mutes.
+*Compresseur — rythmique.* Class-A FET. **Pas de Threshold** : Input Gain monté depuis sa valeur par défaut (-24 dB, manuel 6.5.3) jusqu’à lire 3–4 dB de réduction au mètre, Ratio 4:1, **Attack 0,8 ms** (la plus lente du modèle ; 5 ms est hors plage, 2.1), Release 250 ms. Le FET réagit vite et ajoute le mordant qu’on cherche sur les palm mutes.
 
 *EQ — lead.* Cut -3 dB à 250 Hz, Q 1.5, pour la boue de proximité. Boost +2 dB à 2 kHz, Q 2.0, pour la présence. Cut optionnel -2 dB à 3,5 kHz, Q 3.0, si l’ampli est agressif. **Deuxième fenêtre de présence à essayer : 800 Hz – 1,5 kHz**, plus bas que le 2 kHz habituel. Selon l’ampli et le micro, c’est parfois là que le solo ressort du mur de guitares rythmiques sans devenir criard — à comparer en A/B avec le 2 kHz plutôt qu’à cumuler.
 
@@ -1278,7 +1283,7 @@ Le BD 500 Beta reste le micro principal (3.1). Le PGA52 s’ajoute quand le prê
 
 *Gate/Expander.* Absent du guide jusqu’ici — à ajouter dès qu’il y a du backline fort à proximité (cas fréquent en punk/rock/métal avec cuivres). **Gate, Threshold vers -32 dB, Range -20 à -25 dB** (pas -∞ : un cuivre a un timbre de fin de note et une réverbération naturelle du pavillon qu’un silence total tranche de façon disgracieuse), Attack minimum, Release 300–400 ms pour laisser la résonance du pavillon se dissiper. Si la scène est calme, laisser ouvert.
 
-*Compresseur.* Class-A FET. **Pas de Threshold** : Input Gain monté depuis sa valeur par défaut (-24 dB, manuel 6.5.3) jusqu’à lire 5–7 dB de réduction au mètre, Ratio 4:1, Attack 3 ms, Release 250 ms *(sous réserve des plages réelles, 2.1)*, Output Gain +3 dB. L’attaque rapide attrape les pics avant qu’ils saturent la chaîne.
+*Compresseur.* Class-A FET. **Pas de Threshold** : Input Gain monté depuis sa valeur par défaut (-24 dB, manuel 6.5.3) jusqu’à lire 5–7 dB de réduction au mètre, Ratio 4:1, **Attack 0,8 ms** (la plus lente du modèle ; 3 ms est hors plage, 2.1), Release 250 ms, **Output Gain 0 dB** (sa butée haute : Input et Output vont de −56 à 0 dB, 2.1 ; les +3 dB des versions précédentes n’existent pas, le niveau se rattrape au fader). L’attaque rapide attrape les pics avant qu’ils saturent la chaîne.
 
 *EQ.* Cut -3 dB à 500 Hz, Q 2.0, pour le nasal du métal. Boost +2 dB à 2 kHz pour la brillance. Cut optionnel -2 dB à 4 kHz, Q 3.0, si ça pique en forte.
 
@@ -1470,11 +1475,11 @@ Tous les bus : mode Subgroup, sortie vers Main L/R. **Ordre du signal sur les bu
 
 *Contenu.* Toute la batterie, kick compris : kick, caisse claire, overheads, et les toms lorsqu’ils sont micés en emprunt.
 
-*Compresseur.* Brit Comp. Threshold -15 dB, **Attack 10 ms** (ou 30 ms pour plus d’attaque), Ratio 4:1, Release : le cran le plus proche de 200–300 ms, Makeup +2 dB. *Les crans d’Attack imprimés sur le panneau sont 0,1 / 0,3 / 1 / 3 / 10 / 30 ms (2.8) : les « 10–20 ms » des versions précédentes n’existaient pas. Si le Release est lui aussi cranté comme sur le bus compressor SSL (0,1 / 0,3 / 0,6 / 1,2 s / Auto — inférence), prendre 0,3 s.* Réduction visée 3–5 dB. L’attaque relativement lente laisse passer les premiers transitoires puis colle le sustain — c’est ce qui donne le punch de groupe.
+*Compresseur.* Brit Comp. Threshold -15 dB, **Attack 10 ms** (ou 30 ms pour plus d’attaque), Ratio 4:1, Release : le cran le plus proche de 200–300 ms, Makeup +2 dB. *Les crans d’Attack imprimés sur le panneau sont 0,1 / 0,3 / 1 / 3 / 10 / 30 ms (2.8) : les « 10–20 ms » des versions précédentes n’existaient pas. Le Release est cranté 0,1 / 0,3 / 0,6 / 1,2 s / Auto (catalogue UC Surface 5.1 ; 0,3 s écrit et relu sur la console le 24/11) : prendre 0,3 s.* Réduction visée 3–5 dB. L’attaque relativement lente laisse passer les premiers transitoires puis colle le sustain — c’est ce qui donne le punch de groupe.
 
-*EQ.* Solar 69. Bande Low vers 100 Hz, gain flat : laisser respirer la fondamentale du kick et de la caisse claire, elles sont déjà traitées au canal. Bande Mid vers 800 Hz, +2 dB, mode Peak, pour le corps de l’ensemble. Bande High — **fréquence réglable, pas fixée à 10 kHz** — à placer entre 8 et 10 kHz selon le kit. Gain : **+1 à +2 dB avec les overheads Lewitt du kit de référence** (paragraphe suivant) ; jusqu’à +3 dB seulement avec des overheads plus neutres.
+*EQ.* Solar 69. Bande Low vers 100 Hz, gain flat : laisser respirer la fondamentale du kick et de la caisse claire, elles sont déjà traitées au canal. Bande Mid au cran le plus proche de 800 Hz, **0,7 kHz** (crans du Solar 69, 2.3), +2 dB, mode Peak, pour le corps de l’ensemble. Bande High — **10 kHz, fréquence fixe d’après la console (2.3)**, gain par crans de 2 dB : **0 dB par défaut avec les overheads Lewitt du kit de référence, +2 dB au plus** (paragraphe suivant) ; +2 dB avec des overheads plus neutres. *Le « +1 dB » et le « +3 dB » des versions précédentes n’existent pas sur ce modèle ; la règle de repli donne le cran inférieur.*
 
-*Avec les overheads Lewitt.* Ces micros apportent déjà beaucoup d’aigu par leur voicing. La bande High du Solar 69 se règle donc plus bas qu’on ne le ferait avec des overheads neutres : **+1 à +2 dB suffisent généralement**, et il n’est pas absurde de la laisser flat. Si le bus sonne dur, c’est cette bande qu’il faut baisser en premier.
+*Avec les overheads Lewitt.* Ces micros apportent déjà beaucoup d’aigu par leur voicing. La bande High du Solar 69 se règle donc plus bas qu’on ne le ferait avec des overheads neutres : **un cran, +2 dB, suffit généralement**, et il n’est pas absurde de la laisser flat. Si le bus sonne dur, c’est cette bande qu’il faut baisser en premier.
 
 *Limiteur.* Threshold -1 dB, **Release 250–300 ms** (catégorie Bus/Master).
 
@@ -1488,7 +1493,7 @@ Tous les bus : mode Subgroup, sortie vers Main L/R. **Ordre du signal sur les bu
 
 *Compresseur.* FC-670. **Régler l’Input Gain en premier** : c’est lui qui pilote la profondeur de compression. Monter jusqu’à obtenir 2–4 dB de réduction, puis affiner le point de déclenchement au Threshold, vers -18 dB. Time Constant en position 3 (lente) : les graves de la basse ont le temps de se propager avant que la compression intervienne.
 
-*EQ.* Alpine EQ-550 — fréquences à sept crans par bande (2.3) : « vers » veut dire **le cran le plus proche** de la valeur indiquée, ici comme en Partie 6. *L’addendum ne liste pas les sept fréquences de chaque bande : elles se lisent sur le panneau et sont à relever (registre 8.7). Tant que la liste n’est pas dans ce guide, un preset écrit « Alpine, bande Low, cran le plus proche de 100 Hz » — jamais une fréquence de cran supposée.* Bande Low vers 100 Hz : **vérifier à l’oreille avant de couper.** Le -1 dB en shelf de l’ancienne configuration supposait que la basse était ailleurs. Maintenant qu’elle est sur ce bus, ce cut peut rendre le fond maigre — laisser flat par défaut et ne couper que si le bas s’empâte. Bande Mid vers 2 kHz, +2 dB, pour la présence du groupe d’instruments. Bande High vers 8 kHz, +1 dB, en shelf, pour l’air.
+*EQ.* Alpine EQ-550 — cinq fréquences et onze crans de gain par bande (2.3, 2.7) : « vers » veut dire **le cran le plus proche** de la valeur indiquée, ici comme en Partie 6. Bande Low vers 100 Hz : **vérifier à l’oreille avant de couper.** Le -1 dB en shelf de l’ancienne configuration supposait que la basse était ailleurs. Maintenant qu’elle est sur ce bus, ce cut peut rendre le fond maigre — laisser flat par défaut et ne couper que si le bas s’empâte. Bande Mid au cran 1,5 kHz (le plus proche de 2 kHz), +2 dB, pour la présence du groupe d’instruments. Bande High au cran 7 kHz (le plus proche de 8 kHz), en shelf, pour l’air : **flat par défaut** — le +1 dB des versions précédentes n’existe pas et la règle de repli donne le cran inférieur ; monter d’un cran (+2 dB) seulement si l’oreille le demande.
 
 *Limiteur.* **OFF par défaut, ON dès qu’une source électronique à dynamique imprévisible est sur le bus** — synthé analogique dont on ouvre le filtre en montée, groovebox, machine. Ces sources peuvent gagner 10 dB en une seconde sans prévenir, et le FC-670 en Time Constant lente ne les rattrape pas. Quand il est ON : Threshold -1 dB, Release 250–300 ms.
 
@@ -1536,7 +1541,7 @@ Envoyer cette source vers Bus Drums et Bus Parallel. **Aucun traitement chargé 
 
 *Si l’annulation ne se produit jamais*, même sans traitement : le montage n’est pas une addition transparente sur cette console. Le Bus Parallel reste alors utilisable, mais **comme un effet assumé** — on le dose à l’oreille pour ce qu’il apporte, sans prétendre qu’il renforce proprement le signal d’origine. Noter le résultat du test ici une fois pour toutes.
 
-*EQ.* RC-500. Bande Low vers 100 Hz flat. Bande Mid vers 250 Hz, -2 dB, pour éviter le bas-médium lourd que génère la compression extrême. Bande High vers 3 kHz, +2 dB, pour la présence.
+*EQ.* RC-500. Bande Low vers 100 Hz flat. Bande Mid **400 Hz, -2 dB**, pour éviter le bas-médium lourd que génère la compression extrême — c’est sa butée basse : les 250 Hz des versions précédentes sont hors plage (Mid 400–7 500 Hz, catalogue UC Surface 5.1, 2.7), la règle de repli donne la valeur la plus proche. Bande High vers 3 kHz, +2 dB, pour la présence. *Variante à tester (8.7) :* bande Low en Peak vers 250 Hz, -2 dB (Low 20–600 Hz ; Q fixe de 0,6 en Peak, addendum 4.3), Mid flat — elle vise la zone d’origine ; à comparer à l’oreille avant de l’adopter.
 
 *Limiteur.* Threshold -1 dB, **Release 150 ms**. Ce bus reçoit le kick : la règle de 2.4 s’applique (sur le grave, jamais plus court que 150 ms, sous peine de distorsion par suivi de la forme d’onde). En pratique, le Comp 160 en amont a déjà tassé les crêtes et ce limiteur travaille peu — mais s’il travaille, il doit le faire sans salir le bas.
 
@@ -1580,9 +1585,9 @@ Envoyer cette source vers Bus Drums et Bus Parallel. **Aucun traitement chargé 
 
 *Compresseur.* Everest C100A. Attack Fast, Release Fast. **Réduction 1–2 dB maximum.** Si le compresseur Master travaille davantage, le problème est en amont : corriger les bus, pas le Master.
 
-*EQ.* Passive Program EQ. Low Boost +1 dB vers 60 Hz pour la fondation, High Boost +1 dB vers 10 kHz pour l’air. **Règle absolue : ±1 à 2 dB maximum.**
+*EQ.* Passive Program EQ. Low Boost léger à 60 Hz pour la fondation, High Boost léger à 10 kHz pour l’air. **⚠️ Boost et Atten sont gradués de 0 à 10, sans unité** (manuel 6.6.2, catalogue UC Surface 5.1) : la correspondance avec des décibels n’est documentée nulle part, et les « +1 dB » des versions précédentes ne se règlent pas tels quels. Méthode : partir de 0, monter jusqu’au premier effet audible, puis revenir un peu en arrière, et noter la graduation retenue. **La règle reste : au Master, un geste léger, jamais une correction.**
 
-*À tester — le tour de passe-passe Pultec (voir 2.8).* Au lieu du Low Boost seul : **Low Boost +1 à +2 dB ET Low Atten +1 à +2 dB, tous les deux à 60 Hz**, simultanément. Sur ce circuit passif les deux ne s’annulent pas — le boost est un pic large, l’atténuation un plateau qui démarre juste en dessous. Résultat attendu : une fondation plus ferme *et* un sub nettoyé sous les 40 Hz, d’un seul geste. C’est la technique la plus documentée de ce modèle, et le panneau PreSonus partage bien le même sélecteur de fréquence entre les deux commandes. **Non testé sur cette config — à comparer en A/B avec le réglage actuel avant de l’adopter.**
+*À tester — le tour de passe-passe Pultec (voir 2.8).* Au lieu du Low Boost seul : **Low Boost ET Low Atten, tous les deux légers et à 60 Hz** (graduations sans unité, ci-dessus), simultanément. Sur ce circuit passif les deux ne s’annulent pas — le boost est un pic large, l’atténuation un plateau qui démarre juste en dessous. Résultat attendu : une fondation plus ferme *et* un sub nettoyé sous les 40 Hz, d’un seul geste. C’est la technique la plus documentée de ce modèle, et le panneau PreSonus partage bien le même sélecteur de fréquence entre les deux commandes. **Non testé sur cette config — à comparer en A/B avec le réglage actuel avant de l’adopter.**
 
 *Limiteur.* Threshold selon le style (voir Partie 6), **Release 250–300 ms**. Crête après limiteur : **-1 dBFS maximum** (voir 1.2).
 
@@ -1748,7 +1753,7 @@ Les paramètres non mentionnés dans une scène restent ceux des Parties 3, 4 et
 
 *Bus Voix — limiteur.* Threshold -2 dB, Release 150–200 ms.
 
-*Bus Drums.* Brit Comp réduction 4–5 dB, plus appuyée que la base. Solar 69 High **+1 à +2 dB** — avec les overheads Lewitt, pas plus (4.1).
+*Bus Drums.* Brit Comp réduction 4–5 dB, plus appuyée que la base. Solar 69 High **+2 dB au plus** (un cran) — avec les overheads Lewitt, pas plus (4.1).
 
 *Bus Parallel.* Fader -8 à -6 dB — présent et agressif.
 
@@ -1766,7 +1771,7 @@ Les paramètres non mentionnés dans une scène restent ceux des Parties 3, 4 et
 
 *Bus Voix — limiteur.* Threshold -2 dB, Release 150–200 ms.
 
-*Bus Drums.* Brit Comp réduction 3–4 dB. Solar 69 Mid +2 dB, High **+1 à +2 dB** (overheads Lewitt, 4.1).
+*Bus Drums.* Brit Comp réduction 3–4 dB. Solar 69 Mid +2 dB, High **+2 dB au plus** (un cran ; overheads Lewitt, 4.1).
 
 *Bus Instru.* FC-670 réduction 3–4 dB. Alpine Mid +2 dB pour que les guitares tiennent leur place.
 
@@ -1788,9 +1793,9 @@ Les paramètres non mentionnés dans une scène restent ceux des Parties 3, 4 et
 
 *Double grosse caisse rapide — une tension à connaître, pas une valeur à recopier.* *Calcul :* à 200 BPM en doubles croches, deux frappes sont séparées de 60 000 / 200 / 4 = **75 ms**. Le compresseur du kick (3.1, Release Auto = 150 ms) n’a pas le temps de relâcher entre deux coups : sur ces passages il cesse d’agir comme une compression et devient une baisse de niveau quasi fixe. Le raccourcir ne résout rien : sous quelques dizaines de millisecondes, on entre dans la zone de distorsion par suivi de la forme d’onde décrite en 2.4 — et le limiteur reste à 150 ms. **Piste à tester :** sur un set à double pédale rapide, réduire la compression du canal kick plutôt que ses temps, et obtenir l’articulation par l’EQ du clic de batte (3.1) ; si le gate est utilisé, son Release doit rester inférieur à l’intervalle entre frappes pour que chaque coup se détache — valeur à déterminer à l’oreille sur le set. *Statut : à tester, registre 8.7.*
 
-*Bus Drums.* Brit Comp réduction 5–6 dB, Attack 10 ms. Solar 69 Mid en mode **Trough** pour creuser vers 400–500 Hz si la batterie s’empâte dans les guitares — c’est le cas d’usage type du notch. *Méthode pour trouver la fréquence (trente secondes, groupe en train de jouer) :* rester d’abord en mode **Peak**, monter le gain Mid de quelques décibels, balayer la fréquence entre 300 et 600 Hz jusqu’à l’endroit où l’empâtement devient le plus laid ; basculer en **Trough** sans toucher la fréquence, puis doser le gain jusqu’à ce que les guitares se détachent. La fréquence dépend du kit et de l’accord du jour : elle se trouve, elle ne se recopie pas.
+*Bus Drums.* Brit Comp réduction 5–6 dB, Attack 10 ms. Solar 69 Mid en mode **Trough** pour creuser si la batterie s’empâte dans les guitares — c’est le cas d’usage type du notch. **⚠️ Le Mid du Solar 69 ne descend pas sous 0,7 kHz (2.3) : la zone 400–500 Hz visée par les versions précédentes n’est pas atteignable sur ce modèle.** Si l’empâtement est plus bas, le creuser aux canaux (Standard EQ) plutôt qu’au bus. *Méthode pour trouver la fréquence (trente secondes, groupe en train de jouer) :* rester d’abord en mode **Peak**, monter le gain Mid de quelques décibels, balayer les crans de fréquence, à partir de 0,7 kHz, jusqu’à l’endroit où l’empâtement devient le plus laid ; basculer en **Trough** sans toucher la fréquence, puis doser le gain jusqu’à ce que les guitares se détachent. La fréquence dépend du kit et de l’accord du jour : elle se trouve, elle ne se recopie pas.
 
-*Vigilance overheads Lewitt en métal.* Le Brit Comp ajoute de la saturation sur les transitoires (c’est voulu, ça donne le punch), et les overheads Lewitt sont déjà très brillants par nature (+6 dB dès 4 kHz, sommet 15 kHz). Le cumul des deux peut vite devenir fatigant sur un kit métal joué fort et rapide. Garder le Solar 69 High **flat ou +1 dB maximum** ici (le maximum de +1 à +2 dB des scènes punk et rock ne s’applique pas ici), et ne pas hésiter à couper -1 à -2 dB vers 6–8 kHz sur le canal overheads lui-même si le rendu pique après 20 minutes de set.
+*Vigilance overheads Lewitt en métal.* Le Brit Comp ajoute de la saturation sur les transitoires (c’est voulu, ça donne le punch), et les overheads Lewitt sont déjà très brillants par nature (+6 dB dès 4 kHz, sommet 15 kHz). Le cumul des deux peut vite devenir fatigant sur un kit métal joué fort et rapide. Garder le Solar 69 High **flat** ici (le +1 dB des versions précédentes n’existe pas, crans de 2 dB ; le +2 dB des scènes punk et rock ne s’applique pas ici), et ne pas hésiter à couper -1 à -2 dB vers 6–8 kHz sur le canal overheads lui-même si le rendu pique après 20 minutes de set.
 
 *Bus Instru.* Alpine Low band en cut léger si le mur de guitares mange la basse. Mid +2 dB.
 
@@ -1806,7 +1811,7 @@ Les paramètres non mentionnés dans une scène restent ceux des Parties 3, 4 et
 
 *Bus Voix — compresseur.* Tube CB Manual, **Attack Slow, Release Slow**, Ratio 3:1, Threshold -15 dB. Réduction 4–6 dB. Les temps lents laissent la dynamique du MC s’exprimer — c’est ce qui distingue un rap qui respire d’un rap écrasé.
 
-*Bus Voix — EQ.* Alpine EQ-550. Low band ~250 Hz **+3 dB en Peak** pour la chaleur dans les bas-médiums, Mid band ~2 kHz +2 dB pour l’intelligibilité, High band ~8 kHz +1 dB en Shelf pour la définition.
+*Bus Voix — EQ.* Alpine EQ-550. Low band **200 Hz** (250 Hz n’existe pas ; 200 et 300 Hz sont à égale distance et la règle de repli ne tranche pas pour une fréquence : 200 Hz en valeur de départ, 300 Hz à comparer, à valider par Louis), **+2 dB en Peak** pour la chaleur dans les bas-médiums (le +3 dB n’existe pas, cran inférieur), Mid band 1,5 kHz (cran le plus proche de 2 kHz) +2 dB pour l’intelligibilité, High band 7 kHz en Shelf, **flat**, pour la définition (le +1 dB n’existe pas, cran inférieur). Crans : 2.3.
 
 *Bus Voix — limiteur.* Threshold -3 dB, Release 150–200 ms.
 
@@ -1828,11 +1833,11 @@ Les paramètres non mentionnés dans une scène restent ceux des Parties 3, 4 et
 
 *Bus Voix — compresseur.* Tube CB Manual, Attack Medium, Release Slow, Ratio 3:1, Threshold -15 dB. Réduction 4–5 dB.
 
-*Bus Voix — EQ.* Alpine EQ-550. Low ~250 Hz +2 dB, Mid ~2 kHz +2 dB, High ~8 kHz +1 dB en Shelf.
+*Bus Voix — EQ.* Alpine EQ-550. Low 200 Hz (250 Hz n’existe pas ; 300 Hz à comparer, comme en 6.4) +2 dB, Mid 1,5 kHz +2 dB, High 7 kHz en Shelf, flat (crans, 2.3).
 
 *Bus Voix — limiteur.* Threshold -3 dB, Release 200 ms.
 
-*Bus Instru.* C’est le bus clé du reggae. FC-670 Time Constant 3, mais réduction plus douce : 2–3 dB. La basse doit rester ronde et présente, pas serrée. Alpine Low band **flat ou +1 dB** — ne surtout pas couper le bas ici.
+*Bus Instru.* C’est le bus clé du reggae. FC-670 Time Constant 3, mais réduction plus douce : 2–3 dB. La basse doit rester ronde et présente, pas serrée. Alpine Low band **flat** (le +1 dB des versions précédentes n’existe pas ; un cran, +2 dB, seulement si la basse manque de rondeur) — ne surtout pas couper le bas ici.
 
 *Basse.* Sur le canal, alléger le cut à 60 Hz : -2 dB au lieu de -3 dB. La basse reggae porte le morceau.
 
@@ -2306,7 +2311,7 @@ Sur une autre console, les modèles portent d’autres noms et n’ont pas les m
 | Bus Instru | Glue douce sur des sources hétérogènes, sans pomper dans le grave | FC-670 (lampes, variable-mu), temps lents | Un compresseur à lampes ou optique, ou à défaut à temps lents. Réduction 2–4 dB, jamais plus |
 | Bus Voix | Contrôle rapide sans perdre la clarté | Tube CB | N’importe quel compresseur à attaque rapide et ratio modéré. Le caractère est secondaire |
 | Bus Parallel | Densité et punch ajoutés sous le signal intact | Comp 160, bus dédié | **Vérifier d’abord si la console fait la compression parallèle en natif** — voir 8.4 |
-| Master | Glue finale, 1–2 dB maximum | Everest C100A + Passive Program EQ | Le compresseur le plus transparent, EQ à ±1–2 dB |
+| Master | Glue finale, 1–2 dB maximum | Everest C100A + Passive Program EQ | Le compresseur le plus transparent, EQ en geste léger (sur la 32SC, graduations sans unité : 5.1) |
 
 **Ce qui ne se transfère jamais tel quel :** les valeurs de Threshold (dépendent du gain staging de la machine), les fréquences fixes (propres au modèle émulé), et les noms de modes (Fixed/Manual, All) qui n’existent que sur PreSonus.
 
@@ -2597,13 +2602,15 @@ Pistes argumentées, **aucune validée en conditions réelles**. À cocher au fu
 
 *État au 23 novembre 2026 :* **aucun test de ce registre n’a été réalisé depuis septembre** (confirmé par Louis le 10 novembre ; rien de nouveau au 23 novembre d’après le retour PC de régie). Le seul retour de terrain nouveau est celui de Tram Fest sur SQ6, consigné en 8.6 — il ne solde aucune ligne ci-dessous, toutes propres à la StudioLive ou à d’autres consoles.
 
+*24 novembre 2026 — séance console par Claude Code (preset rock écrit sur la 32SC, 16R en stagebox) :* les plages et crans des modèles ont été relevés dans le catalogue UC Surface 5.1, et plusieurs crans écrits puis relus sur la console (Brit Release 0,3 s ; Alpine 100 Hz, 1,5 kHz, 7 kHz ; Solar « 10kHz Gain » ; Passive Low Freq 60). Les lignes concernées passent de « relever » à « confirmer à l’écran ». Gain et 48 V de la 16R pilotés depuis la 32SC : constaté (1.4). Aucune écoute ce jour-là : rien n’est validé à l’oreille.
+
 *La méthode pour avancer :* la balance virtuelle (7.12). Les lignes marquées **BV** se soldent console seule, sur un enregistrement, sans groupe.
 
 | Test | Où | Quoi vérifier |
 | --- | --- | --- |
 | **BV** — Alignement du Bus Parallel | 4.4 | Source large bande ; résidu ≥ 20 dB sous un bus seul, sans traitement puis avec Comp 160 bypassé |
 | Class-A FET en position All | 4.4 | Alternative au Comp 160 sur le Bus Parallel — jamais en direct sur un canal |
-| Tour de passe-passe Pultec | 5.1 | Low Boost +1/+2 dB **et** Low Atten +1/+2 dB à 60 Hz simultanément, en A/B |
+| Tour de passe-passe Pultec | 5.1 | Low Boost **et** Low Atten légers à 60 Hz simultanément, en A/B ; noter les graduations retenues (échelle 0 à 10) |
 | Vintage 3-Band EQ | Guitare lead | Alternative au Standard EQ quand l’ampli est agressif |
 | VT-1 EQ | Voix hip-hop/reggae | Cohérence avec le VT-1 Compressor déjà en poste |
 | Tube EQ | Bus Voix dub | Portée limitée 200 Hz–5 kHz comme protection face aux effets |
@@ -2637,19 +2644,24 @@ Pistes argumentées, **aucune validée en conditions réelles**. À cocher au fu
 | Insert USB, ordre plugin → console | 7.10 | Départ Pre de A, Fat Channel sur B : entendre le plugin seul sur A en solo côté logiciel, puis la voix traitée sur B |
 | Retard d’entrée et départ Pre1 | 7.7 | Retarder un canal de 10 ms : le retour en Pre1 est-il retardé ? |
 | Ordre EQ → compresseur sur les canaux | 1.6 | Canal neuf : bouton Comp>EQ dans l’état par défaut ? Le réglage inversé est-il rappelé avec la scène et le preset de Fat Channel ? |
-| Plages du Class-A FET | 2.1, 3.1, 3.4, 3.6 | Butées réelles d’Attack et de Release ; les Attack de 3 et 5 ms et le Release de 150 ms sont-ils réglables ? |
-| Crans du Release du Brit Comp | 4.1 | Valeurs imprimées sur le panneau |
+| Plages du Class-A FET | 2.1, 3.1, 3.4, 3.6 | Confirmer à l’écran les butées du catalogue (Attack 0,021–0,8 ms, Release 50 ms–1,1 s) ; écouter l’Attack 0,8 ms sur la caisse claire ; défauts Input/Output (catalogue −43 / 0 dB, manuel −24 dB) |
+| Crans du Release du Brit Comp | 4.1 | Confirmer à l’écran 0,1 / 0,3 / 0,6 / 1,2 s / Auto (catalogue) |
+| Bande High du Solar 69 | 2.3, 4.1 | Une commande de fréquence High existe-t-elle à l’écran, ou seulement « 10kHz Gain » ? Un Level Adjust est-il visible ? |
+| Graduations du Passive Program EQ | 5.1 | Boost et Atten lus à l’écran (0 à 10) ; que montre le premier cran de Low Freq, libellé « 20kHz » dans le catalogue ? |
+| Feedback des delays | 5.3, 5.5, Partie 6 | La console expose le feedback de 0 à 1 : un feedback de 0,4 s’affiche-t-il « 40 % » dans UC Surface ? |
+| RC-500 du Bus Parallel, variante Low | 4.4 | Low en Peak vers 250 Hz -2 dB contre Mid 400 Hz -2 dB, en A/B |
+| Ordre EQ/comp sur les bus et le Main | 1.6, Partie 4 | Le réglage existe sur les bus et le Main (catalogue) : état par défaut du bouton Comp>EQ ? |
 | Retour d’effet dans la liste USB Sends | 5.2 | Le retour FX A est-il proposé comme source ? Si oui, ducking avec la reverb de la console |
 | Niveau d’un retour d’effet vers un bus en mode sous-groupe | 5.3 | Affectation seule, ou niveau réglable par bus ? |
 | Plages et défauts des effets | 5.1bis | Pour chaque reverb et delay : plage et valeur par défaut de Reflection, Size, Diffusion, Spread, Width ; présence d’un Mix ou d’un Decay à l’écran |
-| Crans de fréquence de l’Alpine EQ-550 | 4.2 | Les sept fréquences de chaque bande, lues sur le panneau |
+| Crans de l’Alpine EQ-550 | 2.3, 4.2, Partie 6 | Confirmer à l’écran cinq fréquences par bande et onze crans de gain (catalogue), contre les sept points de l’addendum (les paliers concordent) |
 | Réduction retenue pour le ducking | 2.5, 6.4 | Valeur lue au mètre une fois le réglage satisfaisant |
 | Départ d’un retour d’effet vers un autre FX | 6.6 | Le retour FX B propose-t-il un départ vers FX A (delay dans la reverb) ? |
 | **BV** — Double grosse caisse rapide | 6.3 | Sur un enregistrement de métal : moins de compression au canal kick contre réglage standard ; release du gate sous l’intervalle entre frappes |
 
 **Regroupement par séance — pour solder le registre en trois fois.**
 
-*Séance 1 — console seule, sans son, environ vingt minutes. Ce ne sont que des lectures d’écran.* Plages du Class-A FET · crans du Release du Brit Comp · crans de l’Alpine EQ-550 · plages et défauts des effets, présence d’un Mix ou d’un Decay · Key Source et modèles d’EQ sur un retour d’effet · Low Shelf sur un retour d’effet · retour d’effet dans la liste USB Sends · niveau d’un retour d’effet vers un bus en mode sous-groupe · départ d’un retour d’effet vers un autre FX · état par défaut du bouton Comp>EQ · sous-groupe fixe vers une sortie Mix.
+*Séance 1 — console seule, sans son, environ vingt minutes. Ce ne sont que des lectures d’écran.* Plages du Class-A FET · crans du Release du Brit Comp · crans de l’Alpine EQ-550 · bande High du Solar 69 · graduations du Passive · feedback des delays · ordre EQ/comp sur bus et Main · plages et défauts des effets, présence d’un Mix ou d’un Decay · Key Source et modèles d’EQ sur un retour d’effet · Low Shelf sur un retour d’effet · retour d’effet dans la liste USB Sends · niveau d’un retour d’effet vers un bus en mode sous-groupe · départ d’un retour d’effet vers un autre FX · état par défaut du bouton Comp>EQ · sous-groupe fixe vers une sortie Mix.
 
 *Séance 2 — console et enregistrement multipiste (balance virtuelle, 7.12), une à deux heures.* Toutes les lignes marquées **BV**, plus : voyants du Comp 160 · Class-A FET en All · tour de passe-passe Pultec · retard d’entrée et départ Pre1 · rappel de l’ordre EQ → compresseur avec la scène · insert USB (ordre plugin → console, clap-test, tenue CPU) · effet de la table par USB.
 
@@ -2682,10 +2694,10 @@ Pistes argumentées, **aucune validée en conditions réelles**. À cocher au fu
 | Standard EQ | Paramétrique | Canaux — chirurgie, HPF |
 | Passive Program EQ | Lampe passif | Master |
 | Vintage 1970s EQ | 4 bandes, Low en plateau, High à fréquence fixe | Bus Voix — punk, rock, métal |
-| Alpine EQ-550 | 3 bandes, 7 points | Bus Instru, Bus Voix hip-hop et reggae |
+| Alpine EQ-550 | 3 bandes, 5 fréquences fixes, 11 crans de gain | Bus Instru, Bus Voix hip-hop et reggae |
 | Baxandall EQ | Plateaux larges | Canal Kick |
 | RC-500 EQ | 3 bandes semi-param | Bus Parallel |
-| Solar 69 EQ | Brit, notch, High réglable | Bus Drums |
+| Solar 69 EQ | Brit, notch, High fixe à 10 kHz (console) | Bus Drums |
 | Tube EQ | Passif lampe, 200 Hz–5 kHz uniquement (Peak/Dip/Peak) | Chaleur subtile sur une voix · option Bus Voix dub |
 | Vintage 3-Band | Actif mordant | Canal guitare ou voix sans présence |
 | VT-1 EQ | 4 bandes semi-param | Voix — finesse |
@@ -2800,6 +2812,21 @@ Ce qui reste en place, ce qui bouge, ce qui se démonte. Sur un plateau serré, 
 # HISTORIQUE — NE PAS CITER
 
 *Section de traçabilité. Les valeurs « avant » sont périmées et ne doivent jamais être reprises comme valeurs de travail : seul le corps du guide fait foi. Une recherche textuelle peut tomber ici avant d’atteindre la prescription courante : la protection est la consigne du bloc assistant, pas le texte.*
+
+### CE QUI CHANGE PAR RAPPORT À LA V38
+
+Source : séance console du 24 novembre 2026 (preset rock alternatif écrit sur la 32SC par Claude Code, 16R en stagebox), retour `retours/2026-11-24_preset-rock-console.md` ; plages et crans relevés dans le catalogue UC Surface 5.1 (définitions de paramètres chargées par la console) et vérifiés point par point contre le manuel et l’addendum. Aucune écoute : rien n’est validé à l’oreille.
+
+- **1.4** : pilotage des préamplis de la 16R en mode Stagebox. Avant : « gain et fantôme pilotables depuis la surface ou UC Surface ». Après : source Network par canal (6.10.1), patch AVB par canal à vérifier (12.3.1), gain et 48 V réglés sur le canal de la 32SC, permission Préamplis requise (9.4.2), écriture directe sur la 16R refusée.
+- **2.1, 3.1, 3.4, 3.6 — Class-A FET** : Attack 0,021–0,8 ms, Release 50 ms–1,1 s. Avant : Attack 3 ms (caisse claire, trompette), 5 ms (guitare rythmique, variante hip-hop), « sous réserve ». Après : 0,8 ms partout (règle de repli), Release inchangés. Input et Output −56 à 0 dB : Output +3 dB de la trompette → 0 dB.
+- **2.3, 2.7, 4.2, Partie 6 — Alpine EQ-550** : avant « 7 points de fréquence, cinq crans » (addendum 1.2, manuel 6.8.5). Après : cinq fréquences par bande, et non sept (catalogue) ; les onze crans de gain concordent avec les cinq paliers de l’addendum. Bus Instru : Mid 2 kHz → 1,5 kHz, High 8 kHz +1 dB → 7 kHz flat. Bus Voix hip-hop : Low 250 Hz +3 dB → 200 Hz +2 dB (300 Hz à comparer) ; Mid 2 → 1,5 kHz ; High 8 kHz +1 → 7 kHz flat. Reggae : idem, Bus Instru Low « flat ou +1 » → flat.
+- **2.3, 4.1, Partie 6, Annexe — Solar 69** : avant « High à fréquence réglable, pas de Level Adjust » (addendum 4.4). Après : contradiction signalée ; bande High traitée comme fixe à 10 kHz, crans de 2 dB ; Level Adjust présent au catalogue ; Mid à partir de 0,7 kHz. Bus Drums : Mid 800 Hz → 0,7 kHz ; High « +1 à +2 », « jusqu’à +3 » → 0 dB par défaut, +2 dB au plus. Métal : Trough 400–500 Hz → impossible sur ce modèle, creuser aux canaux ; High « flat ou +1 dB maximum » → flat.
+- **2.7, 4.1 — Brit Comp** : crans du Release 0,1 / 0,3 / 0,6 / 1,2 s / Auto, Ratio 2:1 / 4:1 / 10:1. Avant : inférence. Après : catalogue, 0,3 s relu sur la console.
+- **2.3, 2.7, 4.4 — RC-500 EQ** : Mid 400–7 500 Hz. Avant : « Mid vers 250 Hz -2 dB ». Après : Mid 400 Hz -2 dB (règle de repli) ; Low en Peak vers 250 Hz en variante à tester (8.7).
+- **2.3, 2.7, 2.8, 5.1 — Passive Program EQ** : Boost et Atten gradués 0–10 sans unité. Avant : « +1 dB », « +1 à +2 dB », « ±1 à 2 dB maximum ». Après : geste léger réglé à l’oreille, graduation notée.
+- **2.7** : nouvelles lignes Standard Comp, Alpine, Solar 69, RC-500 EQ, Passive.
+- **8.7** : état du 24/11 ; lignes FET, Brit et Alpine reformulées (« confirmer à l’écran ») ; cinq lignes nouvelles (bande High du Solar 69, graduations du Passive, feedback des delays, variante Low du RC-500, ordre EQ/comp sur bus et Main) ; séance 1 complétée.
+- **1.1, 8.2** : « EQ à ±1–2 dB » au Master → EQ en geste léger (graduations sans unité du Passive).
 
 ### CE QUI CHANGE PAR RAPPORT À LA V37
 

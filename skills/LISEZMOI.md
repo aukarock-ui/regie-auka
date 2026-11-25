@@ -13,10 +13,15 @@
 | methode-calage | méthode de calage système |
 | nouveau-systeme | décrire une sono inconnue avant de la caler |
 | fiche-evenement | fiche d'un événement son avant tout calage |
+| charger-preset-console | charger sur la 32SC, par le serveur studiolive, un preset complet tiré d'une fiche technique et d'un style |
 
 Avec le compte claude.ai, ces skills arrivent tout seuls dans Claude Code. Cette copie sert de référence et de secours : `demarrer-regie-auka` installe depuis le zip ceux qui manqueraient, sans écraser ceux qui sont déjà là.
 
 La version de référence de chaque skill est celle du compte claude.ai. Le zip est republié depuis le projet « Mix Live » quand un skill change.
+
+## À ajouter au compte claude.ai (25/11/2026)
+
+- `charger-preset-console` (nouveau, écrit à la régie) : préparer la console canal par canal à partir du guide, par `prepare_preset_plan` puis `apply_preset_plan` après l'OK de Louis. À ajouter au compte (Paramètres → Capacités → Skills) avec le `SKILL.md` de ce dossier.
 
 ## À recopier dans le compte claude.ai (23/11/2026)
 

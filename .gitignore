@@ -10,5 +10,7 @@ skills/skills.zip
 _telechargements/
 # Journal des écritures sur la console (serveur studiolive) : reste sur le PC
 logs/
+# Sauvegardes de l'état de la console (snapshot_console_state, captures réseau) : restent sur le PC
+sauvegardes-console/
 # Réponses brutes des IA auditrices : non triées, ne pas publier
 audits/_brut/

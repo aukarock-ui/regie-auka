@@ -1,0 +1,1002 @@
+{
+  "title": "Rock alternatif — preset complet (guide V38, 6.2)",
+  "sources": [
+    "Guide V38 3.1, 3.2, 3.3, 3.4, 3.5, 3.7, 2.4, Partie 4, 5.1-5.5, 6.2",
+    "Consignes Louis : ordre batterie/basse/guitares/instrus/voix lead d'abord, une couleur par bus"
+  ],
+  "muteAllLineInputs": true,
+  "_a_completer_apres_chargement_des_modeles": "bus 9 BRIT_COMP (attack 10ms, ratio 4:1, release 0.3s inférence, threshold -15, makeup +2) + SOLAR_69_EQ (mid 800 +2, high 8-10k +1 à +2) ; bus 11 FC_670 (thr ~-18, time constant 3) + ALPINE_EQ_550 (mid ~2k +2, high ~8k +1 shelf) ; bus 13 TUBE_CB Manual (attack Fast, release Medium, 4:1, -15, gain +2) + VINTAGE (low ~200 +2, L-mid +1, H-mid +2, high +2) ; bus 15 COMP_160 (output +10, 8-12 dB GR) + RC_500_EQ (100 flat, 250 -2, 3k +2) ; bus 16 STANDARD -18/3:1/10ms/auto ; master EVEREST_C100A (fast/fast, 1-2 dB GR) + PASSIVE (low boost +1 @60, high boost +1 @10k) ; FX A VintageReverb (predelay 40 ms, reflection modéré, LP 8k, LF damp 0), B StereoDelay (TAP, fb 40 %, LP 6k, HP 200, Fb LPF 5k), C DigitalXLReverb (predelay 20, reflection assez haut, size modéré, LPF 6-8k), D PingpongDelay (500 ms/TAP, fb 30 %, LP 5k, HP 300, Fb LPF 4k). Canaux : FET ch2 (attack 3 ms, release 150) et ch9 (attack 5, release 250) ; RC-500 ch8 (attack Fast, release Slow, makeup +3) ; Baxandall ch1 (low cut 30-40, low shelf 80-100 +1/+2, high shelf 3-4k +1/+2).",
+  "channels": [
+    {
+      "channel": 1,
+      "name": "KICK",
+      "color": "ff0000",
+      "phantom": true,
+      "preampGainDb": 25,
+      "hpfHz": 30,
+      "gate": {
+        "enabled": false
+      },
+      "compressor": {
+        "model": "STANDARD",
+        "enabled": true,
+        "thresholdDb": -15,
+        "ratio": 4,
+        "attackMs": 10,
+        "autoMode": true,
+        "makeupDb": 2
+      },
+      "eq": {
+        "model": "BAXANDALL_EQ",
+        "enabled": true,
+        "params": {}
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -1,
+        "releaseMs": 150
+      },
+      "pan": 0,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 9,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 10,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 15,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 2,
+      "name": "SNARE",
+      "color": "ff0000",
+      "phantom": false,
+      "preampGainDb": 30,
+      "hpfHz": 80,
+      "gate": {
+        "enabled": false
+      },
+      "compressor": {
+        "model": "FET",
+        "enabled": true,
+        "params": {
+          "input": "-24 dB",
+          "ratio": "4:1"
+        }
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": true,
+        "bands": [
+          {
+            "band": 2,
+            "freqHz": 300,
+            "gainDb": -4,
+            "q": 1.5
+          }
+        ]
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -1,
+        "releaseMs": 70
+      },
+      "pan": 0,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 9,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 10,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 15,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 3,
+      "name": "OH L",
+      "color": "ff0000",
+      "phantom": true,
+      "preampGainDb": 5,
+      "hpfHz": 80,
+      "link": true,
+      "gate": {
+        "enabled": false
+      },
+      "compressor": {
+        "model": "STANDARD",
+        "enabled": true,
+        "thresholdDb": -20,
+        "ratio": 3,
+        "attackMs": 10,
+        "autoMode": true
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": true,
+        "bands": [
+          {
+            "band": 2,
+            "freqHz": 400,
+            "gainDb": -2,
+            "q": 1.5
+          }
+        ]
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -1,
+        "releaseMs": 50
+      },
+      "pan": -100,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 9,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 10,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 4,
+      "name": "OH R",
+      "color": "ff0000",
+      "phantom": true,
+      "preampGainDb": 5,
+      "hpfHz": 80,
+      "gate": {
+        "enabled": false
+      },
+      "compressor": {
+        "model": "STANDARD",
+        "enabled": true,
+        "thresholdDb": -20,
+        "ratio": 3,
+        "attackMs": 10,
+        "autoMode": true
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": true,
+        "bands": [
+          {
+            "band": 2,
+            "freqHz": 400,
+            "gainDb": -2,
+            "q": 1.5
+          }
+        ]
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -1,
+        "releaseMs": 50
+      },
+      "pan": 100,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 9,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 10,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 5,
+      "name": "TOM 1",
+      "color": "ff0000",
+      "phantom": false,
+      "preampGainDb": 25,
+      "hpfHz": 60,
+      "gate": {
+        "enabled": true,
+        "thresholdDb": -30,
+        "rangeDb": -84,
+        "attackMs": 0.02,
+        "releaseMs": 200
+      },
+      "compressor": {
+        "model": "STANDARD",
+        "enabled": true,
+        "thresholdDb": -15,
+        "ratio": 4,
+        "attackMs": 10,
+        "autoMode": true
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": true,
+        "bands": [
+          {
+            "band": 1,
+            "freqHz": 100,
+            "gainDb": 3
+          },
+          {
+            "band": 2,
+            "freqHz": 400,
+            "gainDb": -3,
+            "q": 1.5
+          },
+          {
+            "band": 4,
+            "freqHz": 3000,
+            "gainDb": 2
+          }
+        ]
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -1,
+        "releaseMs": 70
+      },
+      "pan": 0,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 9,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 10,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 15,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 6,
+      "name": "TOM 2",
+      "color": "ff0000",
+      "phantom": false,
+      "preampGainDb": 25,
+      "hpfHz": 60,
+      "gate": {
+        "enabled": true,
+        "thresholdDb": -30,
+        "rangeDb": -84,
+        "attackMs": 0.02,
+        "releaseMs": 200
+      },
+      "compressor": {
+        "model": "STANDARD",
+        "enabled": true,
+        "thresholdDb": -15,
+        "ratio": 4,
+        "attackMs": 10,
+        "autoMode": true
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": true,
+        "bands": [
+          {
+            "band": 1,
+            "freqHz": 90,
+            "gainDb": 3
+          },
+          {
+            "band": 2,
+            "freqHz": 400,
+            "gainDb": -3,
+            "q": 1.5
+          },
+          {
+            "band": 4,
+            "freqHz": 2500,
+            "gainDb": 2
+          }
+        ]
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -1,
+        "releaseMs": 70
+      },
+      "pan": 0,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 9,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 10,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 15,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 7,
+      "name": "TOM FLOOR",
+      "color": "ff0000",
+      "phantom": false,
+      "preampGainDb": 25,
+      "hpfHz": 50,
+      "gate": {
+        "enabled": true,
+        "thresholdDb": -30,
+        "rangeDb": -84,
+        "attackMs": 0.02,
+        "releaseMs": 200
+      },
+      "compressor": {
+        "model": "STANDARD",
+        "enabled": true,
+        "thresholdDb": -15,
+        "ratio": 4,
+        "attackMs": 10,
+        "autoMode": true
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": true,
+        "bands": [
+          {
+            "band": 1,
+            "freqHz": 70,
+            "gainDb": 2
+          },
+          {
+            "band": 2,
+            "freqHz": 400,
+            "gainDb": -3,
+            "q": 1.5
+          },
+          {
+            "band": 4,
+            "freqHz": 1500,
+            "gainDb": 2
+          }
+        ]
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -1,
+        "releaseMs": 70
+      },
+      "pan": 0,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 9,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 10,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 15,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 8,
+      "name": "BASSE DI",
+      "color": "0000ff",
+      "phantom": true,
+      "preampGainDb": 10,
+      "hpfHz": 40,
+      "gate": {
+        "enabled": false
+      },
+      "compressor": {
+        "model": "RC_500_COMPRESSOR",
+        "enabled": true,
+        "params": {
+          "threshold": "-18 dB"
+        }
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": true,
+        "bands": [
+          {
+            "band": 1,
+            "freqHz": 60,
+            "gainDb": -3,
+            "q": 1
+          },
+          {
+            "band": 2,
+            "freqHz": 100,
+            "gainDb": 2,
+            "q": 1
+          },
+          {
+            "band": 3,
+            "freqHz": 800,
+            "gainDb": 2,
+            "q": 1.5
+          }
+        ]
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -1,
+        "releaseMs": 150
+      },
+      "pan": 0,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 11,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 12,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 9,
+      "name": "GTR 1",
+      "color": "0000ff",
+      "phantom": false,
+      "preampGainDb": 25,
+      "hpfHz": 100,
+      "gate": {
+        "enabled": false
+      },
+      "compressor": {
+        "model": "FET",
+        "enabled": true,
+        "params": {
+          "input": "-24 dB",
+          "ratio": "4:1"
+        }
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": true,
+        "bands": [
+          {
+            "band": 2,
+            "freqHz": 200,
+            "gainDb": -4,
+            "q": 1.5
+          },
+          {
+            "band": 3,
+            "freqHz": 800,
+            "gainDb": 1
+          },
+          {
+            "band": 4,
+            "freqHz": 3000,
+            "gainDb": 2,
+            "q": 2
+          }
+        ]
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -1,
+        "releaseMs": 100
+      },
+      "pan": 0,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 11,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 12,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 10,
+      "name": "GTR 2",
+      "color": "0000ff",
+      "phantom": false,
+      "preampGainDb": 25,
+      "hpfHz": 80,
+      "gate": {
+        "enabled": false
+      },
+      "compressor": {
+        "model": "STANDARD",
+        "enabled": true,
+        "thresholdDb": -15,
+        "ratio": 3,
+        "attackMs": 5,
+        "releaseMs": 150,
+        "autoMode": false
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": true,
+        "bands": [
+          {
+            "band": 2,
+            "freqHz": 250,
+            "gainDb": -3,
+            "q": 1.5
+          },
+          {
+            "band": 3,
+            "freqHz": 2000,
+            "gainDb": 2,
+            "q": 2
+          }
+        ]
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -1,
+        "releaseMs": 100
+      },
+      "pan": 0,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 11,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 12,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 11,
+      "name": "SYNTH",
+      "color": "0000ff",
+      "phantom": false,
+      "preampGainDb": 0,
+      "hpfHz": 40,
+      "gate": {
+        "enabled": false
+      },
+      "compressor": {
+        "model": "STANDARD",
+        "enabled": true,
+        "thresholdDb": -18,
+        "ratio": 3,
+        "attackMs": 10,
+        "autoMode": true
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": false
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -1,
+        "releaseMs": 150
+      },
+      "pan": 0,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 11,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 12,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 12,
+      "name": "LEAD",
+      "color": "ffff00",
+      "phantom": false,
+      "preampGainDb": 35,
+      "hpfHz": 100,
+      "gate": {
+        "enabled": false
+      },
+      "compressor": {
+        "model": "STANDARD",
+        "enabled": true,
+        "thresholdDb": -15,
+        "ratio": 4,
+        "attackMs": 3,
+        "releaseMs": 150,
+        "autoMode": false,
+        "makeupDb": 2
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": true,
+        "bands": [
+          {
+            "band": 2,
+            "freqHz": 250,
+            "gainDb": -3,
+            "q": 1.5
+          }
+        ]
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -2,
+        "releaseMs": 200
+      },
+      "pan": 0,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 13,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 14,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 13,
+      "name": "CHOEUR 1",
+      "color": "ffff00",
+      "phantom": false,
+      "preampGainDb": 35,
+      "hpfHz": 120,
+      "gate": {
+        "enabled": false
+      },
+      "compressor": {
+        "model": "STANDARD",
+        "enabled": true,
+        "thresholdDb": -18,
+        "ratio": 4,
+        "attackMs": 5,
+        "releaseMs": 150,
+        "autoMode": false
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": true,
+        "bands": [
+          {
+            "band": 2,
+            "freqHz": 250,
+            "gainDb": -3,
+            "q": 1.5
+          }
+        ]
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -2,
+        "releaseMs": 200
+      },
+      "pan": 0,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 13,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 14,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 14,
+      "name": "CHOEUR 2",
+      "color": "ffff00",
+      "phantom": false,
+      "preampGainDb": 35,
+      "hpfHz": 120,
+      "gate": {
+        "enabled": false
+      },
+      "compressor": {
+        "model": "STANDARD",
+        "enabled": true,
+        "thresholdDb": -18,
+        "ratio": 4,
+        "attackMs": 5,
+        "releaseMs": 150,
+        "autoMode": false
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": true,
+        "bands": [
+          {
+            "band": 2,
+            "freqHz": 250,
+            "gainDb": -3,
+            "q": 1.5
+          }
+        ]
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -2,
+        "releaseMs": 200
+      },
+      "pan": 0,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 13,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 14,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    },
+    {
+      "channel": 15,
+      "name": "CHOEUR 3",
+      "color": "ffff00",
+      "phantom": false,
+      "preampGainDb": 35,
+      "hpfHz": 120,
+      "gate": {
+        "enabled": false
+      },
+      "compressor": {
+        "model": "STANDARD",
+        "enabled": true,
+        "thresholdDb": -18,
+        "ratio": 4,
+        "attackMs": 5,
+        "releaseMs": 150,
+        "autoMode": false
+      },
+      "eq": {
+        "model": "STANDARD",
+        "enabled": true,
+        "bands": [
+          {
+            "band": 2,
+            "freqHz": 250,
+            "gainDb": -3,
+            "q": 1.5
+          }
+        ]
+      },
+      "limiter": {
+        "enabled": true,
+        "thresholdDb": -2,
+        "releaseMs": 200
+      },
+      "pan": 0,
+      "mainLR": false,
+      "sends": [
+        {
+          "mix": 13,
+          "on": true,
+          "levelDb": 0
+        },
+        {
+          "mix": 14,
+          "on": true,
+          "levelDb": 0
+        }
+      ]
+    }
+  ],
+  "buses": [
+    {
+      "bus": 9,
+      "busMode": "Subgroup",
+      "name": "DRUMS",
+      "color": "ff0000",
+      "link": true,
+      "lrAssign": true,
+      "faderDb": 0,
+      "limiter": {
+        "enabled": true,
+        "params": {
+          "threshold": "-1 dB",
+          "release": "250 ms"
+        }
+      }
+    },
+    {
+      "bus": 11,
+      "busMode": "Subgroup",
+      "name": "INSTRU",
+      "color": "0000ff",
+      "link": true,
+      "lrAssign": true,
+      "faderDb": 0,
+      "limiter": {
+        "enabled": true,
+        "params": {
+          "threshold": "-1 dB",
+          "release": "250 ms"
+        }
+      }
+    },
+    {
+      "bus": 13,
+      "busMode": "Subgroup",
+      "name": "VOIX",
+      "color": "ffff00",
+      "link": true,
+      "lrAssign": true,
+      "faderDb": 0,
+      "limiter": {
+        "enabled": true,
+        "params": {
+          "threshold": "-2 dB",
+          "release": "200 ms"
+        }
+      }
+    },
+    {
+      "bus": 15,
+      "busMode": "Subgroup",
+      "name": "PARALLEL",
+      "color": "ff8000",
+      "link": false,
+      "lrAssign": true,
+      "faderDb": null,
+      "limiter": {
+        "enabled": true,
+        "params": {
+          "threshold": "-1 dB",
+          "release": "150 ms"
+        }
+      }
+    },
+    {
+      "bus": 16,
+      "busMode": "Subgroup",
+      "name": "DIVERS",
+      "color": "808080",
+      "link": false,
+      "lrAssign": true,
+      "faderDb": 0,
+      "limiter": {
+        "enabled": true,
+        "params": {
+          "threshold": "-1 dB",
+          "release": "250 ms"
+        }
+      }
+    }
+  ],
+  "master": {
+    "limiter": {
+      "enabled": true,
+      "params": {
+        "threshold": "-2 dB",
+        "release": "250 ms"
+      }
+    }
+  },
+  "fx": [
+    {
+      "fx": "A",
+      "returnName": "REV VOIX",
+      "returnColor": "8000ff",
+      "returns": [
+        {
+          "to": 13,
+          "on": true
+        },
+        {
+          "to": "main",
+          "on": false
+        }
+      ],
+      "returnFaderDb": -18
+    },
+    {
+      "fx": "B",
+      "returnName": "DELAY",
+      "returnColor": "8000ff",
+      "returns": [
+        {
+          "to": 13,
+          "on": true
+        },
+        {
+          "to": "main",
+          "on": false
+        }
+      ],
+      "returnFaderDb": -20
+    },
+    {
+      "fx": "C",
+      "returnName": "REV DRUMS",
+      "returnColor": "8000ff",
+      "returns": [
+        {
+          "to": 9,
+          "on": true
+        },
+        {
+          "to": "main",
+          "on": false
+        }
+      ],
+      "returnFaderDb": -18
+    },
+    {
+      "fx": "D",
+      "returnName": "PING PONG",
+      "returnColor": "8000ff",
+      "returns": [
+        {
+          "to": "main",
+          "on": true
+        }
+      ],
+      "returnFaderDb": null
+    }
+  ]
+}

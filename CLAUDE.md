@@ -69,7 +69,7 @@ Le but : le meilleur résultat pour le moins de ressources. L'état du projet vi
 
 ## Où sont les choses dans ce dossier
 
-- `guide/Guide_Mixage_Live_V38.md` : **la référence unique** (presets, bus, gain staging, scènes de style, correspondances multi-consoles, registre des vérifications 8.7). Le consulter, jamais le reconstituer de mémoire. La section `HISTORIQUE — NE PAS CITER` contient volontairement des valeurs périmées.
+- `guide/Guide_Mixage_Live_V39.md` : **la référence unique** (presets, bus, gain staging, scènes de style, correspondances multi-consoles, registre des vérifications 8.7). Le consulter, jamais le reconstituer de mémoire. La section `HISTORIQUE — NE PAS CITER` contient volontairement des valeurs périmées.
 - `contexte/` : faits utiles qui ne sont pas tous dans le guide (parc matériel, système de la grande scène, comportements console vérifiés). En cas de désaccord avec le guide, le guide prime et l'écart est signalé à Louis.
 - `manuels/` : documentation constructeur. Les `.txt` sont des extractions pour la recherche ; l'extraction casse les tableaux, donc pour un tableau décisif, ouvrir la page du PDF.
 - `skills/` : copie de secours des skills de la méthode (`skills.zip` sur le Drive et en local ; sur GitHub, seulement les `SKILL.md` dézippés).
@@ -98,7 +98,7 @@ Dans les trois cas, ce que Louis décide ou valide à l'écoute devient un retou
 
 ## Skills
 
-Les skills de la méthode arrivent automatiquement avec le compte claude.ai de Louis : `maj-guide-mixage`, `audit-guide-par-ia-externe`, `preparer-evenement-sono`, `transposer-preset-console`, `integrer-retour-terrain`, `demarrer-regie-auka`, `methode-calage`, `nouveau-systeme`, `fiche-evenement`. Les suivre quand la tâche correspond. Une copie de secours est dans `skills/skills.zip` (dossier Drive `skills`) : si l'un d'eux manque dans la session, l'installer depuis ce zip (skill `demarrer-regie-auka`, étape 4 ter), sans écraser un skill déjà présent.
+Les skills de la méthode arrivent automatiquement avec le compte claude.ai de Louis : `maj-guide-mixage`, `audit-guide-par-ia-externe`, `preparer-evenement-sono`, `transposer-preset-console`, `integrer-retour-terrain`, `demarrer-regie-auka`, `methode-calage`, `nouveau-systeme`, `fiche-evenement`, `charger-preset-console`. Les suivre quand la tâche correspond. Une copie de secours est dans `skills/skills.zip` (dossier Drive `skills`) : si l'un d'eux manque dans la session, l'installer depuis ce zip (skill `demarrer-regie-auka`, étape 4 ter), sans écraser un skill déjà présent.
 
 ## Console en direct (serveur MCP `studiolive`)
 
@@ -114,7 +114,7 @@ Règles non négociables quand le serveur est connecté :
 4. **Charger un preset depuis une fiche technique** :
    - construire la spec canal par canal à partir du guide (valeurs et sections citées), en signalant les écarts et les trous selon « Quand le guide ne couvre pas » ;
    - appeler `prepare_preset_plan` (rien n'est envoyé) et présenter à Louis le plan : étapes par canal dans l'ordre de la fiche, niveau de confiance, actions manuelles (modèle de comp ou d'EQ à passer sur Standard), avertissements ;
-   - n'appeler `apply_preset_plan` qu'après son OK. Le code mute toutes les entrées, attend que la console confirme chaque mute (sinon il s'arrête sans rien écrire d'autre), écrit les réglages, met les faders du preset à 0 dB, ne touche jamais au master ni aux bus et ne démute jamais ;
+   - n'appeler `apply_preset_plan` qu'après son OK. Le code mute toutes les entrées, attend que la console confirme chaque mute (sinon il s'arrête sans rien écrire d'autre), écrit les réglages, met les faders du preset à la valeur de la spec (0 dB par défaut) ; ne touche au Main qu'avec `master`, aux bus qu'avec `busMaster`, et ne démute qu'avec `unmute`, en dernier et après confirmation de tout le reste (démute retenu s'il reste une action manuelle, un pas sauté ou un phantom retenu, sauf `unmuteDespiteManual`) ; le plan entier est refusé si `allow` ne couvre pas toutes ses catégories ;
    - le phantom n'est envoyé qu'avec `allowPhantom`, sur demande explicite de Louis, et seulement sur les canaux où la spec le prévoit (attention aux micros à ruban et aux DI actives) ;
    - après l'envoi, signaler les clés `notConfirmed` et proposer de vérifier ces canaux dans UC Surface ;
    - tant que la première séance de validation n'est pas faite (voir `code/…/docs/preset-plan.md`), commencer par un seul canal et le faire contrôler par Louis.
